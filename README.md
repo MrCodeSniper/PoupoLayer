@@ -53,7 +53,7 @@ PopManager.getInstance().showNextPopi();
 ```
 ### 效果预览
 
-![预览图](https://user-gold-cdn.xitu.io/2019/1/31/1689fff4be066237?imageslim)
+![avatar](https://user-gold-cdn.xitu.io/2019/1/31/1689fff4be066237?imageslim)
 
 ### 框架目前的缺陷
 
