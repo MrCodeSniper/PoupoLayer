@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/transparent"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    
+    
+    
+    <LinearLayout
+        android:paddingLeft="25dp"
+        android:paddingRight="23dp"
+        android:orientation="vertical"
+        android:background="@drawable/common_dialog_upgrade"
+        android:layout_width="280dp"
+        android:layout_height="323dp">
+
+
+
+        <TextView
+            android:layout_marginTop="43dp"
+            android:layout_width="wrap_content"
+            android:text="发现新版本"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_new_version"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            />
+
+
+
+        <TextView
+            android:layout_marginTop="56dp"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:textColor="@color/text_color_333"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="更新内容："
+            />
+
+
+        <ScrollView
+            android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp">
+
+            <TextView
+                android:id="@+id/tv_upgrade_content"
+                android:scrollbars="none"
+                android:textSize="15sp"
+                android:textColor="@color/text_color_333"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+
+        </ScrollView>
+
+
+
+
+
+
+        <Button
+            android:id="@+id/btn_upgrade"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            android:text="立即更新"
+            android:layout_width="120dp"
+            android:layout_height="36dp"
+            android:background="@drawable/common_red_radius_corner_5dp"
+            />
+
+
+
+    </LinearLayout>
+    
+    
+    <ImageView
+        android:id="@+id/iv_close_upgrade_pop"
+        android:layout_marginTop="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/common_white_close_icon"
+        />
+
+</LinearLayout>

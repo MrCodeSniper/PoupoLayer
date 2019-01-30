@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="translucent_background">#80000000</color>
+    <color name="colorTransparent_15">#D9ffffff</color>
+
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="text_color_999">#FF999999</color>
+    <color name="text_color_blue_4974f1">#FF4974F1</color>
+    <color name="text_color_333">#FF333333</color>
+    <color name="text_color_666">#FF666666</color>
+    <color name="color_grey_e9e9e9">#FFE9E9E9</color>
+    <color name="color_grey_c1c1c1">#FFC1C1C1</color>
+    <color name="color_yellow_f8ac08">#FFF8AC08</color>
+    <color name="color_yellow_feb61a">#FFFEB61A</color>
+    <color name="color_grey_cccccc">#FFCCCCCC</color>
+    <color name="color_green_44b549">#FF44B549</color>
+    <color name="color_green_24CD8F">#FF24CD8F</color>
+    <color name="color_red_ff3636">#FFFF3636</color>
+    <color name="color_black_aa8080">#FFAA8080</color>
+    <color name="color_red_5e5e">#FFFF5E5E</color>
+    <color name="color_divide_eee">#FFEEEEEE</color>
+    <color name="color_divide_e1e1">#FFE1E1E1</color>
+    <color name="color_divide_e5e5e5e">#FFE5E5E5</color>
+    <color name="color_divide_dbdbdb">#FFDBDBDB</color>
+    <color name="color_grey_e2e2e2">#FFE2E2E2</color>
+    <color name="color_grey_a9a9a9">#FFA9A9A9</color>
+    <color name="color_divide_dfdfdf">#FFDFDFDF</color>
+    <color name="color_black_trans_30">#4D000000</color>
+    <color name="half_trans">#e0000000</color>
+    <color name="solid_trans_80">#CC000000</color>
+    <color name="color_pink_ffe1e1">#FFFFE1E1</color>
+    <color name="color_pink_ffdcdc">#FFFFDCDC</color>
+    <color name="color_white_trans_70">#B3FFFFFF</color>
+    <color name="color_white_trans_80">#CCFFFFFF</color>
+    <color name="color_green_24cd8f">#FF24CD8F</color>
+    <color name="color_gray_f2f2f2">#FFF2F2F2</color>
+    <color name="color_gray_dcdcdc">#FFDCDCDC</color>
+    <color name="color_gray_b7b7">#FFB7B7B7</color>
+    <color name="color_gray_ecec">#ffececec</color>
+    <color name="color_gray_f6f6">#fff6f6f6</color>
+    <color name="color_gray_9292">#FF929292</color>
+    <color name="color_red_f2f2">#fffff2f2</color>
+    <color name="color_red_d6d6">#FFFFD6D6</color>
+    <color name="color_gray_c9c9">#FFC9C9C9</color>
+    <color name="color_yellow_7227">#FFFA7227</color>
+    <color name="color_golden_aae1b">#FFFAAE1B</color>
+    <color name="color_golden_eb61a">#FFFEB61A</color>
+    <color name="color_golden_e33c">#ffffe33c</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="gray">#808080</color>
+    <color name="yellow">#FFFF00</color>
+    <color name="green">#008000</color>
+    <color name="blue">#0000FF</color>
+    <color name="orange">#FFA500</color>
+
+    <array name="in_colors_light">
+        <item>#4B03A9F4</item>
+        <item>#3303A9F4</item>
+        <item>#1903A9F4</item>
+    </array>
+
+
+    <color name="transparent">#00FFFFFF</color>
+
+    <color name="half_transparent">#88000000</color>
+
+    <color name="hrz_main_color">#FFED4143</color>
+
+    <color name="captrue_bar_color">#CC000000</color>
+
+
+    <color name="contents_text">#ff000000</color>
+    <color name="encode_view">#ffffffff</color>
+    <color name="possible_result_points">#c0ffbd21</color> <!-- Android standard ICS color -->
+    <color name="result_minor_text">#ffc0c0c0</color>
+    <color name="result_points">#c099cc00</color> <!-- Android standard ICS color -->
+    <color name="result_text">#ffffffff</color>
+    <color name="result_view">#b0000000</color>
+    <color name="status_text">#ffffffff</color>
+    <color name="viewfinder_laser">#ffcc0000</color> <!-- Android standard ICS color -->
+    <color name="viewfinder_mask">#60000000</color>
+
+
+
+    <!--*********************************************
+ *              Config Color                  *
+ **********************************************-->
+
+    <color name="qmui_config_color_transparent">#00000000</color>
+    <color name="qmui_config_color_white">#ffffff</color>
+    <color name="qmui_config_color_75_white">#C0FFFFFF</color>
+    <color name="qmui_config_color_50_white">#80FFFFFF</color>
+    <color name="qmui_config_color_25_white">#40FFFFFF</color>
+    <color name="qmui_config_color_15_white">#26FFFFFF</color>
+    <color name="qmui_config_color_10_white">#19FFFFFF</color>
+
+    <color name="qmui_config_color_pure_black">#000000</color>
+    <color name="qmui_config_color_75_pure_black">#C0000000</color>
+    <color name="qmui_config_color_60_pure_black">#99000000</color>
+    <color name="qmui_config_color_50_pure_black">#80000000</color>
+    <color name="qmui_config_color_25_pure_black">#40000000</color>
+    <color name="qmui_config_color_15_pure_black">#26000000</color>
+    <color name="qmui_config_color_10_pure_black">#19000000</color>
+
+
+
+    <color name="qmui_config_color_blue">#1B88EE</color>
+    <color name="qmui_config_color_50_blue">#801B88EE</color>
+    <color name="qmui_config_color_red">#FA3A3A</color>
+    <color name="qmui_config_color_separator">#DEE0E2</color>
+    <color name="qmui_config_color_separator_darken">#D4D6D8</color>
+    <color name="qmui_config_color_background">#F4F5F7</color>
+    <color name="qmui_config_color_background_pressed">#EEEFF1</color>
+    <color name="qmui_config_color_black">#212832</color>
+    <color name="qmui_config_color_link">#547FB0</color>
+    <color name="qmui_config_color_pressed">#EEEEF0</color>
+
+    <color name="qmui_config_color_gray_1">#353C46</color>
+    <color name="qmui_config_color_gray_2">#49505A</color>
+    <color name="qmui_config_color_gray_3">#5D646E</color>
+    <color name="qmui_config_color_gray_4">#717882</color>
+    <color name="qmui_config_color_gray_5">#858C96</color>
+    <color name="qmui_config_color_gray_6">#99A0AA</color>
+    <color name="qmui_config_color_gray_7">#ADB4BE</color>
+    <color name="qmui_config_color_gray_8">#C4C8D0</color>
+    <color name="qmui_config_color_gray_9">#D8DCE4</color>
+
+
+    <color name="qmui_drawable_color_list_separator">#DEE0E2</color>
+    <color name="qmui_drawable_color_list_pressed">#DEE0E2</color>
+
+</resources>

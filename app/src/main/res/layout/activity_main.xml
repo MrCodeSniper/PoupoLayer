@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorAccent"
+        app:title="Dialog专题"
+        app:titleTextColor="@color/white">
+    </android.support.v7.widget.Toolbar>
+
+
+    <Button
+        android:onClick="showNormalDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="显示正常弹窗"
+        />
+
+    <Button
+        android:onClick="showDelayDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="延迟消失类型弹窗"
+        />
+
+
+    <Button
+        android:onClick="showDateDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="限定时间类弹窗"
+        />
+
+
+    <Button
+        android:onClick="showTimeDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="限定次数类弹窗"
+        />
+
+
+    <Button
+        android:onClick="showPriorityDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="根据优先级 顺序显示弹窗"
+        />
+
+
+
+
+    
+
+</LinearLayout>
