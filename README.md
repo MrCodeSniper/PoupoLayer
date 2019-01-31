@@ -14,7 +14,7 @@
  maven { url 'https://www.jitpack.io' }
 
 //add this to your dependencies
-implementation 'com.github.MrCodeSniper:PopLayer:1.1'
+implementation 'com.github.MrCodeSniper:PopLayer:1.2'
 ```
 
 ## 具体如何使用
