@@ -88,5 +88,7 @@ public class DialogLayerStrategyImpl implements LayerLifecycle {
     }
 
 
-
+    public PopDialog getmDialog() {
+        return mDialog;
+    }
 }
