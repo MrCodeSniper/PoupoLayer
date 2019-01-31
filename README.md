@@ -73,6 +73,23 @@ PopManager.getInstance().showNextPopi();
 
 其他类型的弹窗也会陆续更新 希望能提供给大家一个较为全面的应对业务需求的弹窗管理框架
 
+### 版本记录
+
+
+#### V1.0
+
+项目开启
+
+#### V1.1
+
+修复Dialog策略无法获取dialog实体bug
+
+#### V1.2
+
+修复activity摧毁造成的弹窗异常 bug
+
+
+
 ### 作者介绍
 
 Hello 我叫lalala,如果您喜欢这个项目 请给个star 能follow我那真是太好了！！
