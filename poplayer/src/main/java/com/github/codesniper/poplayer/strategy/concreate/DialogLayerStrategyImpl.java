@@ -5,6 +5,7 @@ package com.github.codesniper.poplayer.strategy.concreate;
 //Code Programming By MrCodeSniper on 2018/7/6.Best Wishes to You!  []~(~▽~)~* Cheers!
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.view.ContextThemeWrapper;
@@ -71,7 +72,14 @@ public class DialogLayerStrategyImpl implements LayerLifecycle {
     @Override
     public void onShow(Context context) {
         if(!mDialog.isShowing()){
-            mDialog.show();
+            if(context instanceof Activity){
+                Activity activity= (Activity) context;
+                if(!activity.isFinishing()){
+                    mDialog.show();
+                }
+            }else {
+                mDialog.show();
+            }
         }
     }
 
