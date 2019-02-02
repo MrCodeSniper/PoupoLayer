@@ -1,0 +1,51 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00FFFFFF"
+    >
+
+    <TextView
+        android:id="@+id/top"
+        android:layout_marginTop="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:padding="10dp"
+        android:text="Native背景文字"
+        android:textSize="18dp"
+        android:textColor="#FF040F"/>
+
+
+
+    <com.github.codesniper.poplayer.custom.PopWebView
+        android:id="@+id/myWeb"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#00FFFFFF" />
+
+    <EditText
+        android:visibility="gone"
+        android:id="@+id/et"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:paddingRight="50dp"
+        android:singleLine="true"
+        android:imeActionLabel="Go" />
+
+
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/page_load_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:padding="10dp"
+        android:text="0ms"
+        android:textSize="18dp"
+        android:textColor="#FF040F"/>
+
+</RelativeLayout>

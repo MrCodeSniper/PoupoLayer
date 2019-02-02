@@ -5,14 +5,15 @@ package com.github.codesniper.poplayer.interfaces;
 //Code Programming By MrCodeSniper on 2018/7/4.Best Wishes to You!  []~(~▽~)~* Cheers!
 
 
-
+import com.github.codesniper.poplayer.custom.IPop;
+import com.github.codesniper.poplayer.custom.PopWebView;
 
 /**
  *  弹窗的触摸机制 统一   分为实体区域 和 外围区域 触摸时的事件收发可以自定义
  */
 public interface LayerTouchSystem {
-    //触摸到透明区域
-    void onTouchOutSideArea();
-    //触摸到实心区域
-    void onTouchSolidArea();
+    //触摸到外部区域
+    void onTouchOutSideArea(IPop iPop);
+    //触摸到内部区域
+    void onTouchSolidArea(IPop iPop);
 }

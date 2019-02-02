@@ -6,5 +6,5 @@ package com.github.codesniper.poplayer.custom;
  */
 public interface IPop {
    //整合基础原生组件
-//    void onDismss();
+    void onPopTouch(int touchStatus);
 }

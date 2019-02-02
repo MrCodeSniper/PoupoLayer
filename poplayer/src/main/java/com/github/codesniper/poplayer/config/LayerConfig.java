@@ -9,8 +9,11 @@ public class LayerConfig {
     //示例html 红包雨
     public static final String redPocketScheme="file:///android_asset/index_rain.html";
 
-    public static int STATE_WEBVIEW=1;
-    public static int STATE_DIALOG=0;
+    public static final int STATE_WEBVIEW=1;
+    public static final int STATE_DIALOG=0;
+
+    public static final int POP_TOUCH_WEB=0;
+    public static final int POP_TOUCH_NATIVE=1;
 
     //弹窗的取消方式 0为点击消失 1为计时消失
     public static int TRIGGER_CANCEL=0;

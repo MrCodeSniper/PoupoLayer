@@ -18,4 +18,9 @@ public class PopDialog extends Dialog implements IPop{
         super.onStart();
         getWindow().setBackgroundDrawableResource(android.R.color.transparent);
     }
+
+    @Override
+    public void onPopTouch(int touchStatus) {
+
+    }
 }
