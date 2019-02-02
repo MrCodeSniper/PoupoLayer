@@ -13,12 +13,12 @@ import com.github.codesniper.poplayer.strategy.concreate.DialogLayerStrategyImpl
 import static com.github.codesniper.poplayer.config.LayerConfig.COUNTDOWN_CANCEL;
 import static com.github.codesniper.poplayer.config.LayerConfig.TRIGGER_CANCEL;
 
-public class MainActivity extends AppCompatActivity {
+public class DialogActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_dialog_subject);
 
     }
 

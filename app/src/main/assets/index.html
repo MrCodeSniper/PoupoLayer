@@ -1,0 +1,78 @@
+<html>
+<head>
+	<meta name="save" content="history" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="blank" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="css/rain.css" />
+	<style>
+	.rightbottom {
+         width:100px;
+         height:70px;
+    }
+
+
+.righttop {
+		position: absolute;
+        bottom:50px;
+         right:2.2%;
+         width:20px;
+         height:20px;
+    }
+
+
+
+	.page_rain{
+		background: #00000000;
+	}
+	.container{
+		position: fixed;
+		 bottom:10%;
+         right:2%;
+	}
+	.img-content{
+		position: relative;
+	}
+</style>
+	<script type="text/javascript" src="js/jquery.min.js" ></script>
+	<title></title>
+</head>
+<script>
+
+	function congraduation() {
+		alert("恭喜您, 拆红包功能后续研发中! 谢谢参与!");
+	}
+
+	function hidePopLayer() {
+		if(window.poplayer) {
+			poplayer.hidePopLayer();
+		}
+	}
+
+
+
+</script>
+<body>
+	<div class="page_rain">
+
+		<div class="container">
+			<div class="img-content">
+				<img class="rightbottom" onclick="congraduation()" src="./imgs/chuai.png"/>
+				<img class="righttop"  onclick="hidePopLayer()" src="./imgs/close.png"/>
+			</div>
+		</div>
+
+
+
+		<!--蒙层-->
+		<div class="chuai_box" style="display: none;">
+			<div class="chuai" >
+				<p>新春红包</p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

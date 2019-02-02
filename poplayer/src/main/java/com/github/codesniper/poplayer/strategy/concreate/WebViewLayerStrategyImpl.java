@@ -2,6 +2,8 @@ package com.github.codesniper.poplayer.strategy.concreate;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
@@ -67,29 +69,39 @@ public class WebViewLayerStrategyImpl implements LayerLifecycle {
     public void onCreate(Context context) {
         //如果用户没有传入webview 则用默认的全屏透明的webview
         if(myWebView==null){
+
             isWebViewAttached=false;
-            myWebView= View.inflate(context, R.layout.poplayer_default_weblayout, null).findViewById(R.id.myWeb);
+            ViewGroup view= (ViewGroup) LayoutInflater.from(context).inflate(R.layout.poplayer_default_weblayout, null,false);
+            myWebView= view.findViewById(R.id.myWeb);
+            view.removeAllViews();
+
+
+
+
             mHibirdImp=new HybirdImpl(context);
-            mWebViewConfigImpl=new WebConfigImpl(jsBridgeFileName,jsObjName);
             mLayerTouchSystemImpl=new PopWebTouchImpl();
+
+            mWebViewConfigImpl=new WebConfigImpl(jsBridgeFileName,jsObjName);
+            mWebViewConfigImpl.setUpWebConfig(myWebView,globalLoadScheme);
         }
     }
 
     @Override
     public void onInit(Context context) {
-        mWebViewConfigImpl.setUpWebConfig(myWebView,globalLoadScheme);
         mWebViewConfigImpl.initHybirdImpl(mHibirdImp);
         myWebView.setLayerTouchSystemImpl(mLayerTouchSystemImpl);
-        isWebViewAttached=true;
     }
 
     @Override
     public void onShow(Context context) {
         if(isWebViewAttached){
+            Log.e("xxx","显示1");
             myWebView.setVisibility(View.VISIBLE);
         }else {
+            Log.e("xxx","显示2");
             //如果不存在直接在window上加
             ((Activity)context).getWindow().addContentView(myWebView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            isWebViewAttached=true;
         }
     }
 

@@ -1,0 +1,130 @@
+<html>
+<head>
+	<meta name="save" content="history" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="blank" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="css/rain.css" />
+	<style>
+	.rightbottom {
+         width:100px;
+         height:70px;
+    }
+
+
+.righttop {
+		position: absolute;
+        bottom:50px;
+         right:2.2%;
+         width:20px;
+         height:20px;
+    }
+
+
+
+	.page_rain{
+		background: #00000000;
+	}
+	.container{
+		position: fixed;
+		 bottom:10%;
+         right:2%;
+         z-index: 999;
+	}
+	.img-content{
+		position: relative;
+	}
+</style>
+	<script type="text/javascript" src="js/jquery.min.js" ></script>
+	<title></title>
+</head>
+
+<body>
+	<div class="page_rain">
+
+		<div class="container">
+			<div class="img-content">
+				<img class="rightbottom"  onclick="showRain()" src="./images/chuai.png"/>
+				<img class="righttop"  onclick="hidePopLayer()" src="./images/close.png"/>
+			</div>
+		</div>
+
+		<div class="div bg_1"></div>
+
+
+		<!--蒙层-->
+		<div class="chuai_box" style="display: none;">
+			<div class="chuai" onclick="hidePopLayer()">
+				<p>新春红包</p>
+			</div>
+		</div>
+	</div>
+	<script>
+
+
+	var a =0;
+	var Timerr = null;
+	var removepackage = setInterval(function(){
+				for(var jj=0;jj<$('.div>div').size()/4;jj++){
+				$('.div>div').eq($('.div>div').size()-jj).remove();
+				}
+			},1000)
+
+	function huaq(){
+
+		for(var i=0;i<4;i++){
+		var m=parseInt(Math.random()*700+100);
+		var j2=parseInt(Math.random()*300+1200);
+		var j=parseInt(Math.random()*1600+000);
+		var j1=parseInt(Math.random()*300+300);
+		var n=parseInt(Math.random()*10+(-10));
+		$('.div').prepend('<div class="dd"></div>');
+		$('.div').children('div').eq(0).css({'left':j,'top':n});
+		$('.div').children('div').eq(0).animate({'left':j-j1,'top':$(window).height()+20},3000);
+		}
+	}
+
+	function showRain(){
+	   $(".container").hide();
+	   clearInterval(Timerr,0);
+	   imerr = setInterval(huaq,200);
+
+
+   }
+
+
+	$(document).on('touchstart', '.dd', function(){
+		$(this).css("background-position","0 -100px");
+		a++;
+		if(a == 5){
+			$(".chuai_box").show();
+
+
+			clearInterval(Timerr,20);
+			$(".div").removeClass("bg_1");
+			setTimeout(function(){
+				$(".div").addClass("bg_2");
+			},3000);
+		}
+	});
+
+	function congraduation() {
+		alert("恭喜您, 拆红包功能后续研发中! 谢谢参与!");
+	}
+
+	function hidePopLayer() {
+	console.log("xxxyyy");
+	alert("恭喜您, 拆红包功能后续研发中! 谢谢参与!");
+		if(window.poplayer) {
+			poplayer.hidePopLayer();
+		}
+	}
+
+
+
+</script>
+</body>
+</html>

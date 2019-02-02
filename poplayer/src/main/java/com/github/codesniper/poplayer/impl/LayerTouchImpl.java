@@ -1,6 +1,7 @@
 package com.github.codesniper.poplayer.impl;
 
 
+import com.github.codesniper.poplayer.custom.IPop;
 import com.github.codesniper.poplayer.interfaces.LayerTouchSystem;
 
 /**
@@ -8,13 +9,14 @@ import com.github.codesniper.poplayer.interfaces.LayerTouchSystem;
  */
 
 public class LayerTouchImpl implements LayerTouchSystem {
+
     @Override
-    public void onTouchOutSideArea() {
+    public void onTouchOutSideArea(IPop iPop) {
 
     }
 
     @Override
-    public void onTouchSolidArea() {
+    public void onTouchSolidArea(IPop iPop) {
 
     }
 }

@@ -1,0 +1,426 @@
+/*reset*/
+body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div{margin:0;padding:0;border:0;}
+body{
+	margin: 0 auto;
+}
+ul,ol{list-style-type:none;}
+select,input,img,select{vertical-align:middle;}
+a{ text-decoration:none;}
+*{
+	font-family: "微软雅黑";
+	cursor: pointer;
+}
+*{
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+.clearfix{*zoom:1;}
+	.clearfix:before,.clearfix:after{display:table;content:"";line-height:0;}
+	.clearfix:after{clear:both;}
+
+ul,li,ol{list-style-type: none;}
+a{text-decoration: none;}
+.fl{float: left;}
+.fr{float: right;}
+.mt20{
+	margin-top: 20px;
+}
+
+/*首页page_index*/
+html,body{
+	width: 100%;
+	height: 100%;
+}
+.page_index{
+	max-width: 100%;
+	min-height: 100%;
+}
+.page_index .header{
+	width: 100%;
+}
+.page_index .header img{
+	width: 100%;
+}
+.page_index .qhb_box{
+	position: relative;
+	width: 100%;
+	height: 308px;
+	background-size: 100% 100%;
+}
+.page_index .qhb_box .top{
+	width: 100%;
+}
+.page_index .qhb_box .top .title_1{
+	width: 100%;
+	text-align: center;
+}
+.page_index .qhb_box .top .title_1 img{
+	margin-top: 10px;
+	width: 70%;
+}
+.page_index .qhb_box .top .title_2{
+	margin-left: 20px;
+	margin-right: 20px;
+	padding-top: 10px;
+	background: url(../images/bg_title2.png) no-repeat 0 0;
+	background-size: 100% 100%;
+}
+.page_index .qhb_box .top .title_2 p{
+	width: 70%;
+	margin: 0 auto;
+	font-size: 32px;
+	color: #DA0746;
+	font-weight: bold;
+	text-align: center;
+}
+.page_index .qhb_box .top .no_packagetext{
+	color: #D70545;
+	font-size: 14px;
+	text-align: center;
+	padding-top: 10px;
+}
+.page_index .qhb_box .left_monkey{
+	position: absolute;
+	left: 0;
+	bottom: 90px;
+}
+.page_index .qhb_box .left_monkey img{
+	width: 34%;
+}
+.page_index .qhb_box .middle{
+	text-align: center;
+}
+.page_index .qhb_box .middle .middle_tip{
+	color: #333;
+	font-size: 14px;
+}
+.page_index .qhb_box .middle .time_box{
+	display: inline-block;
+	height: 50px;
+	line-height: 50px;
+	margin-top: 6px;
+}
+.page_index .qhb_box .middle .time_box .item{
+	float: left;
+	font-size: 30px;
+	color: #FFF;
+}
+.page_index .qhb_box .middle .time_box .num{
+	background: #505050;
+	margin-right: 4px;
+}
+.page_index .qhb_box .middle .time_box .point{
+	color: #333;
+	margin-right: 4px;
+}
+/*登录前*/
+.qhb_box .login_before .login_tip{
+	margin-left: 82px;
+	font-size: 15px;
+}
+	
+.page_index .bottom{
+	width: 100%;
+	position: absolute;
+	bottom: 40px;
+}
+.page_index .bottom a{
+	margin: 0 auto;
+	display: block;
+	width: 70%;
+	height: 40px;
+	font-size: 16px;
+	line-height: 40px;
+	border-radius: 6px;
+	background: #D8363C;
+	text-align: center;
+	color: #faf5be;
+}
+.page_index .other_info .line_monkey{
+	width: 100%;
+}
+.page_index .other_info ul li .title{
+	font-size: 18px;
+}
+.page_index .other_info ul li .box{
+	margin-left: 20px;
+	margin-right: 20px;
+	color: #FFF;
+	font-size: 14px;
+	line-height: 24px;
+	padding: 10px 0;
+}
+.page_index .other_info .line_monkey img{
+	width: 100%;
+}
+.page_index .bottom{
+	font-size: #FFF;
+}
+.page_index .my_hbrecord{
+	width: 100%;
+	text-align: center;
+}
+.page_index .my_hbrecord .more_mypackage{
+	display: inline-block;
+	font-size: 16px;
+	color: #da0346;
+	background: #faeda9;
+	padding: 10px 20px;
+	text-align: center;
+	border-radius: 6px;
+	margin-top: 10px;
+}
+.page_index .my_hbrecord ul{
+	margin-top: 10px;
+}
+.page_index .my_hbrecord li{
+	line-height: 40px;
+}
+.page_index .my_hbrecord li p{
+	display: inline-block;
+	text-align: center;
+}
+.page_index .my_hbrecord .left{
+	float: left;
+}
+.page_index .my_hbrecord .right{
+	float: right;
+}
+.page_index .my_hbrecord .seemore{
+	display: inline-block;
+	font-size: 15px;
+	color: #FFF;
+	padding-right: 15px;
+	background: url(../images/seemore.png) no-repeat center right;
+	background-size: 10px 10px;
+}
+/*结果*/
+.page_result{
+	max-width: 100%;
+	min-height: 100%;
+	background: #d8363c;
+}
+.page_result .header img{
+	width: 100%;
+}
+.page_result .middle{
+	text-align: center;
+}
+.page_result .middle .win_prize{
+	margin-top: 10px;
+}
+.page_result .middle .win_prize .text{
+	color: #faeda9;
+	font-size: 15px;
+}
+.page_result .middle .win_prize .name{
+	color: #faeda9;
+	font-size: 25px;
+}
+.page_result .middle .no_prize{
+	display: none;
+	margin-top: 10px;
+	font-size: 25px;
+	color: #faeda9;
+}
+.page_result .middle .btn_again{
+	display: inline-block;
+	margin-top: 10px;
+	font-size: 16px;
+	color: #fc4a40;
+	width: 50%;
+	height: 40px;
+	line-height: 40px;
+	border-radius: 6px;
+	background: #faeda9;
+}
+.page_result .middle .count{
+	margin-top: 10px;
+	font-size: 15px;
+}
+.page_result .middle .tips{
+	line-height: 24px;
+	font-size: 16px;
+}
+.page_result .middle .count,.page_result .middle .tips{
+	color: #FFF;
+	opacity: 0.9;
+}
+.page_result .middle .count span{
+	color: #faeda9;
+}
+.page_result .bottom{
+	padding-bottom: 10px;
+}
+.page_result .bottom  .line_monkey img {
+    width: 100%;
+}
+.page_result .bottom .title,.page_result .bottom  .tips{
+	margin-left: 20px;
+	margin-right: 20px;
+	color: #faeda9;
+}
+.page_result .bottom  .title{
+	font-size: 18px;
+	margin-top: 10px;
+}
+.page_result .bottom  .tips{
+	font-size: 15px;
+}
+.page_result .bottom  .tips p{
+	line-height: 24px;
+}
+/*我的红包*/
+.page_mypackage{
+	max-width: 100%;
+	min-height: 100%;
+	background: #fed14b;
+}
+.page_mypackage .header{
+	text-align: center;
+}
+.page_mypackage .header .title{
+	padding-top: 20px;
+	font-size: 23px;
+	color: #d70545
+}
+.page_mypackage .header .my_head img{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	width: 84px;
+	height: 84px;
+	border-radius: 50%;
+}
+.page_mypackage .header .name_package .user_name{
+	display: inline-block;
+	color: #75040a;
+	font-size: 17px;
+	font-weight: bold;
+}
+.page_mypackage .header .name_package .number_getpackage{
+	display: inline-block;
+	color: #75040a;
+	font-size: 17px;
+}
+.page_mypackage .header .name_package .number_getpackage span{
+	font-weight: bold;
+}
+.page_mypackage .middle .no_getpackagebox{
+	position: relative;
+	padding-top: 40px;
+}
+.page_mypackage .middle .no_getpackagebox img{
+	width: 70px;
+	position: absolute;
+	bottom: -16px;
+	left: 0;
+}
+.page_mypackage .middle .no_getpackage{
+	font-size: 24px;
+	color: #d70545;
+	text-align: center;
+}
+.page_mypackage .middle .no_getpackage{
+	width: 60%;
+	margin: 0 auto;
+}
+.page_mypackage .middle .getpackage{
+	margin-left: 20px;
+	margin-right: 20px;
+	padding-top: 100px;
+	position: relative;
+}
+.page_mypackage .middle .getpackage img{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 78px;
+}
+.page_mypackage .middle .getpackage li{
+	padding: 10px 0;
+	border-bottom: 1px solid #fdab4a;
+}
+.page_mypackage .middle .getpackage li:first-child{
+	border-top: 1px solid #fdab4a;
+}
+.page_mypackage .middle .getpackage p{
+	display: inline-block;
+	height: 30px;
+	line-height: 30px;
+	color: #d70545;
+	font-size: 16px;
+	background: url(../images/redpackage.png) no-repeat left center;
+	background-size: 50px 30px;
+	padding-left: 60px;
+}
+.bg_red{
+	background: #da0746;
+}
+.bg_grey{
+	background: #a7a7a7;
+}
+.page_mypackage .middle .getpackage a{
+	display: inline-block;
+	font-size: 14px;
+	width: 75px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	color: #FFF;
+	border-radius: 5px;
+}
+/*领取按钮2种状态*/
+.page_mypackage .bottom{
+	padding-bottom: 10px;
+}
+.page_mypackage .bottom  .line_monkey img {
+    width: 100%;
+}
+.page_mypackage .bottom .title,.page_mypackage .bottom .tips{
+	margin-left: 20px;
+	margin-right: 20px;
+}
+.page_mypackage .bottom .title{
+	line-height: 50px;
+	color: #fc4a40;
+	font-size: 18px;
+	font-weight: bold;
+}
+.page_mypackage .bottom .tips p{
+	color: #fc4a40;
+	font-size: 16px;
+	line-height: 23px;
+}
+/*rain*/
+.page_rain{
+	/* background: url(../images/bg_redrain.png) no-repeat 0 0;
+	background-size: cover;*/
+	min-height: 100%;
+}
+.page_rain .chuai_box{
+	width: 100%;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(0,0,0,0.5);
+	text-align: center;
+	text-align: -webkit-center;
+}
+.page_rain .chuai_box .chuai{
+	width: 240px;
+	height: 160px;
+	background: url(../images/chuai.png) no-repeat center center;
+	background-size: cover;
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	margin-left: -120px;
+	margin-top: -80px;
+	border-radius: 4px;
+}
+.page_rain .chuai_box .chuai p{
+	color: #ffe401;
+	font-size: 14px;
+	margin-top: 120px;
+}
