@@ -8,6 +8,12 @@ package com.github.codesniper.poplayer.config;
 public class LayerConfig {
     //示例html 红包雨
     public static final String redPocketScheme="file:///android_asset/index_rain.html";
+    public static final String dialog2="file:///android_asset/dialog2.html";
+    public static final String dialog3="file:///android_asset/dialog3.html";
+    public static final String dialog4="file:///android_asset/dialog4.html";
+    public static final String dialog1="file:///android_asset/dialog1.html";
+    public static final String dialog6="file:///android_asset/dialog6.html";
+    public static final String dialog5="file:///android_asset/dialog5.html";
 
     public static final int STATE_WEBVIEW=1;
     public static final int STATE_DIALOG=0;

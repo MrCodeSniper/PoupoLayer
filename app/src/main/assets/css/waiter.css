@@ -1,0 +1,20 @@
+*{margin:0; padding: 0;}
+ul{list-style: none;}
+.wuyou-waiter{position: fixed; right: 0px; top:50%; margin-top: -90px; width: 60px; box-shadow: 0px 0px 20px rgba(0,0,0,.3); z-index: 999;}
+.waiter-ul li{position: relative; height: 60px; line-height: 60px; border-bottom: 1px solid #fff;}
+.waiter-ul li a{ position: absolute; left: 0; top: 0; z-index: 2; color: #fff; display: block; width: 60px; height: 60px; line-height: 60px; text-align: center; -webkit-transition:all 0.6s;-ms-transition:all 0.6s;-moz-transition:all 0.6s; text-decoration: none; font-size: 24px;}
+.waiter-title{position: absolute; left: 0px; bottom: 1px; color: #fff; width: 80px; height: 40px; line-height: 40px; text-align: center;-webkit-transition:all 0.6s;-ms-transition:all 0.6s;-moz-transition:all 0.6s; background-color: #fff; box-shadow: 0px 0px 10px rgba(0,0,0,.3); z-index: 1; opacity: 0;}
+.waiter-title:before{content: ''; display: block; width: 10px; height: 10px; position: absolute; right: -5px; top: 14px; background-color:#fff; transform:rotate(45deg);}
+.waiter-ul li:hover .waiter-title{left: -88px; opacity: 1;}
+
+.waiter-ul li.wuyou-shop a{background-image: -webkit-linear-gradient(left, #f60, #ffb443);background-image: -moz-linear-gradient(left, #f60, #ffb443);background-image: -ms-linear-gradient(left, #f60, #ffb443);}
+.waiter-ul li.wuyou-shop .waiter-title{background-color:#f60; }
+.waiter-ul li.wuyou-shop .waiter-title:before{background-color:#f60; }
+
+.waiter-ul li.wuyou-contact a{background-image: -webkit-linear-gradient(left, #00b7ee, #55d8ff);background-image: -moz-linear-gradient(left, #00b7ee, #55d8ff);background-image: -ms-linear-gradient(left, #00b7ee, #55d8ff);}
+.waiter-ul li.wuyou-contact .waiter-title{background-color:#00b7ee; }
+.waiter-ul li.wuyou-contact .waiter-title:before{background-color:#00b7ee; }
+
+.waiter-ul li.wuyou-top a{background-image: -webkit-linear-gradient(left, #333, #666);background-image: -moz-linear-gradient(left, #333, #666);background-image: -ms-linear-gradient(left, #333, #666);}
+.waiter-ul li.wuyou-top .waiter-title{background-color:#333; }
+.waiter-ul li.wuyou-top .waiter-title:before{background-color:#333; }

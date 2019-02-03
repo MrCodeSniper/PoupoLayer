@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+
+
+<script src="js/jquery.min.js"></script>
+
+<style type="text/css">
+.guize_html{position:fixed;top:25%;left:50%;margin-top:-80px;margin-left:-159px;width:318px;height:auto;border-radius:4px;background-color:#fff;color:#000;text-align:center;font-size:12px}
+.guize_html p{padding:0 10px;text-align:left;text-indent:2em}
+.guize_html_nei{width:318px;min-height:350px;overflow-y:auto;max-height:500px;height:350px;display:block;overflow-y:scroll}
+.btn{display:block;margin:10px auto;width:240px;height:40px;border-radius:4px;background-color:#ff6434;color:#fff;text-align:center;line-height:40px;cursor:pointer}
+.overfloat{position:fixed;top:0;left:0;z-index:9;display:none;width:100%;height:100%;background-color:rgba(1,1,1,.5)}
+</style>
+
+<title>弹出层</title>
+
+</head>
+
+<body>
+
+<div class="overfloat" id="gui_kai">
+  <div class="guize_html">
+  <span class="guize_html_nei">
+    <h3><br>关于信用卡申请规则的重申公告</h3>
+
+    <p>
+        <br>近日，因部分用户伪造虚假信息申请信用卡，给我司平台造成了严重影响。为了进一步规范信用卡申请的规则，严格执行各行信用卡网申的规定，现对平台用户做出如下规定：
+    </p>
+    <p>
+      1、不得以银行的名义进行信用卡网申的推广宣传，如带有银行logo的名片、海报等；
+    </p>
+    <p>
+     2、在本平台申请信用卡，是否下卡取决于申卡人的个人资质，推荐人不得向客户承诺一定下卡以及信用卡授权额度；
+    </p>
+    <p>
+     3、不得私自伪造、变更申卡人的个人信息，更不得指导用户提供虚假资料申请信用卡，如虚假学历、工作单位、固定电话等；
+    </p>
+    <p>4、不得以欺骗、利诱等非法手段诱导客户申请信用卡，如办卡送POS机、刷卡套现等；</p>
+    <p >5、通过本平台申请信用卡的业务完全免费，推荐人不得以任何理由向客户索取任何形式的费用；</p>
+
+<p>所有用户必须严格执行以上七条信用卡申请规范，如有违反，一经发现立即关闭账号。对于违规情节严重者，本平台将依法保留追究其法律责任的权利。<br><br></p>
+<p style="text-align: right;">运营中心</p>
+<p style="text-align: right;">2018年6月1日</p>
+</span>
+    <div id="g_close" class="btn">
+      确定
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $(function() {
+ $("#gui_kai").show();
+  });
+
+$('#g_close').click(function(){
+ $("#gui_kai").hide();
+});
+
+</script>
+
+</body>
+</html>

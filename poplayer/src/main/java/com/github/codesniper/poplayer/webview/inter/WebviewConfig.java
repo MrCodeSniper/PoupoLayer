@@ -1,4 +1,4 @@
-package com.github.codesniper.poplayer.webview;
+package com.github.codesniper.poplayer.webview.inter;
 
 import android.webkit.WebView;
 
@@ -7,11 +7,7 @@ import android.webkit.WebView;
  * 邮箱：15168264355@163.com
  */
 public interface WebviewConfig {
-
     //初始化webview和加载的url
     void setUpWebConfig(WebView webView, String showScheme);
-
-    //初始化JSWebview交互
-    void initHybirdImpl(HybirdManager manager);
 
 }

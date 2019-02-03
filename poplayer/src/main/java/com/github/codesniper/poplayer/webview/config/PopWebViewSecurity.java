@@ -5,11 +5,10 @@ import android.os.Build;
 import android.webkit.WebView;
 
 /**
- * Created by mac on 2018/7/15.
+ * 防止远程执行漏洞
  */
 
 public class PopWebViewSecurity {
-
 
     @TargetApi(11)
     public static final void removeJavascriptInterfaces(WebView webView) {
@@ -23,6 +22,5 @@ public class PopWebViewSecurity {
             tr.printStackTrace();
         }
     }
-
 
 }

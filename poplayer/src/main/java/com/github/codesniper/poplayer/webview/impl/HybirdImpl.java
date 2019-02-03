@@ -5,7 +5,9 @@ import android.webkit.WebView;
 
 
 import com.github.codesniper.poplayer.util.PopUtils;
-import com.github.codesniper.poplayer.webview.HybirdManager;
+import com.github.codesniper.poplayer.webview.inter.HybirdManager;
+
+import com.github.codesniper.poplayer.webview.service.PopWebViewService;
 
 import org.json.JSONObject;
 
@@ -16,23 +18,21 @@ import java.util.Map;
 import java.util.regex.Pattern;
 
 /**
- * Created by mac on 2018/10/29.
+ *  Poplayer默认的交互机制
  */
 
 public class HybirdImpl implements HybirdManager {
 
 
-    private Context context;
-
-    public HybirdImpl(Context context) {
-        this.context=context;
-    }
-
     @Override
     public void injectJsBridge(WebView webView,String JsName) {
-        webView.loadUrl("javascript:" + PopUtils.getJsCode(context,JsName));
+        webView.loadUrl("javascript:" + PopUtils.getJsCode(webView.getContext(),JsName));
     }
 
+    /**
+     * 进来的入口 3个 1.原生2.jsprompt 3.post请求拦截
+     * @param instruction
+     */
     @Override
     public void invokeAppServices(String instruction) {
 
@@ -78,6 +78,8 @@ public class HybirdImpl implements HybirdManager {
 
     @Override
     public void addUpJavaNativeJSInterface(WebView webView,String name) {
-        webView.addJavascriptInterface(new PopWebViewJsInterface(webView),name);
+        PopWebViewService service=new PopWebViewService(webView);
+        service.setHybirdManager(this);
+        webView.addJavascriptInterface(service,name);
     }
 }

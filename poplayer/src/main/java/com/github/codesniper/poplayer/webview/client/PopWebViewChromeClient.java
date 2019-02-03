@@ -1,12 +1,11 @@
-package com.github.codesniper.poplayer.webview.config;
+package com.github.codesniper.poplayer.webview.client;
 
 import android.text.TextUtils;
-import android.view.View;
 import android.webkit.JsPromptResult;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 
-import com.github.codesniper.poplayer.webview.HybirdManager;
+import com.github.codesniper.poplayer.webview.inter.HybirdManager;
 
 /**
  * @Author：陈鸿 on 2019\2\2 0002 22:16
@@ -27,8 +26,6 @@ public class PopWebViewChromeClient extends WebChromeClient {
     }
 
 
-
-
     @Override
     public void onProgressChanged(WebView view, int newProgress) {
         super.onProgressChanged(view, newProgress);
@@ -36,8 +33,6 @@ public class PopWebViewChromeClient extends WebChromeClient {
 
         }
     }
-
-
 
     @Override
     public void onReceivedTitle(WebView view, String title) {

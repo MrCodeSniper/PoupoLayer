@@ -2,21 +2,26 @@ package com.github.codesniper.poplayer.strategy.concreate;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
 
 import com.github.codesniper.poplayer.R;
 import com.github.codesniper.poplayer.custom.PopWebView;
 import com.github.codesniper.poplayer.interfaces.LayerTouchSystem;
 import com.github.codesniper.poplayer.strategy.LayerLifecycle;
-import com.github.codesniper.poplayer.webview.HybirdManager;
-import com.github.codesniper.poplayer.webview.WebviewConfig;
+import com.github.codesniper.poplayer.util.PopUtils;
+import com.github.codesniper.poplayer.webview.inter.HybirdManager;
+import com.github.codesniper.poplayer.webview.inter.WebviewConfig;
 import com.github.codesniper.poplayer.webview.impl.HybirdImpl;
 import com.github.codesniper.poplayer.webview.impl.PopWebTouchImpl;
 import com.github.codesniper.poplayer.webview.impl.WebConfigImpl;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * @Author：陈鸿 on 2019\2\2 0002 21:11
@@ -59,9 +64,10 @@ public class WebViewLayerStrategyImpl implements LayerLifecycle {
         this.myWebView = myWebView;
     }
 
-    public void setLayerTouchSystemImpl(LayerTouchSystem mLayerTouchSystemImpl) {
-        this.mLayerTouchSystemImpl = mLayerTouchSystemImpl;
+    public PopWebView getMyWebView() {
+        return myWebView;
     }
+
 
 
     //必须保证oncreate在set之前执行
@@ -75,20 +81,20 @@ public class WebViewLayerStrategyImpl implements LayerLifecycle {
             myWebView= view.findViewById(R.id.myWeb);
             view.removeAllViews();
 
-
-
-
-            mHibirdImp=new HybirdImpl(context);
+            mHibirdImp=new HybirdImpl();
             mLayerTouchSystemImpl=new PopWebTouchImpl();
 
-            mWebViewConfigImpl=new WebConfigImpl(jsBridgeFileName,jsObjName);
+            WebConfigImpl webConfig=new WebConfigImpl(jsBridgeFileName,jsObjName);
+            webConfig.setHybirdManager(mHibirdImp);
+            mWebViewConfigImpl=webConfig;
             mWebViewConfigImpl.setUpWebConfig(myWebView,globalLoadScheme);
+
+            myWebView.setOnTouchListener(myWebView);
         }
     }
 
     @Override
     public void onInit(Context context) {
-        mWebViewConfigImpl.initHybirdImpl(mHibirdImp);
         myWebView.setLayerTouchSystemImpl(mLayerTouchSystemImpl);
     }
 

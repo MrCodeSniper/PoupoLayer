@@ -19,12 +19,48 @@
 
 
     <Button
-        android:onClick="showTransparentWebview"
+        android:onClick="showNormalPop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="显示透明webview弹窗"
+        android:text="显示透明webview弹窗1(Normal)"
         />
 
+    <Button
+        android:onClick="showDealyPop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="显示透明webview弹窗2(延迟5S)"
+        />
+
+    <Button
+        android:onClick="showEventPop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="显示透明webview弹窗3(限定活动时间)"
+        />
+
+    <Button
+        android:onClick="showTimePop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="显示透明webview弹窗4(限定次数)"
+        />
+
+
+    <Button
+        android:onClick="showPriorityPop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="将4个弹窗根据优先级纳入管理"
+        />
+
+
+    <Button
+        android:onClick="showRpRain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="显示红包雨(特效)"
+        />
 
 
 
