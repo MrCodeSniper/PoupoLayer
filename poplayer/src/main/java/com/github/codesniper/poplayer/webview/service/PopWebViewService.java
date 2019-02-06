@@ -10,6 +10,7 @@ import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 
 import com.github.codesniper.poplayer.custom.PopWebView;
+import com.github.codesniper.poplayer.pop.PopManager;
 import com.github.codesniper.poplayer.webview.impl.HybirdImpl;
 import com.github.codesniper.poplayer.webview.inter.HybirdManager;
 
@@ -19,11 +20,11 @@ import com.github.codesniper.poplayer.webview.inter.HybirdManager;
  */
 public class PopWebViewService extends Object{
 
-    private WebView mWebView;
+    private PopWebView mWebView;
 
     private HybirdManager hybirdManager;
 
-    public PopWebViewService(WebView webView) {
+    public PopWebViewService(PopWebView webView) {
         this.mWebView=webView;
     }
 
@@ -32,7 +33,7 @@ public class PopWebViewService extends Object{
     }
 
     /**
-     * 提供隐藏webview弹窗的服务
+     * 提供隐藏webview弹窗的服务 from native
      */
     @JavascriptInterface
     public void hidePopLayer() {
@@ -40,13 +41,20 @@ public class PopWebViewService extends Object{
             @Override
             public void run() {
                 mWebView.setVisibility(View.GONE);
+                PopManager.getInstance(mWebView.getContext()).onPopDimiss();
+                mWebView.stopLoading();
+                mWebView.clearHistory();
+                mWebView.clearCache(true);
+                mWebView.loadUrl("about:blank");
+                mWebView.pauseTimers();
+                mWebView = null;
             }
         });
     }
 
 
     /**
-     * 提供APP路由服务
+     * 提供APP路由服务 from JsBridge
      */
     public void route(String routePath){
         if(hybirdManager!=null) hybirdManager.invokeAppServices(routePath);

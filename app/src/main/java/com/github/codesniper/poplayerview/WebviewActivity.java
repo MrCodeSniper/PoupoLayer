@@ -21,6 +21,13 @@ import static com.github.codesniper.poplayer.config.LayerConfig.TRIGGER_CANCEL;
 
 public class WebviewActivity extends Activity {
 
+    //我需要加载自己的url 满足
+    //我可以任选jsbridge方案还是第三方方案 还是原生 不满足
+    //我可以自定义注入的对象名 满足
+    //我可以自定义配置webview 满足
+    //可不可以自定义X5webview
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,46 +41,31 @@ public class WebviewActivity extends Activity {
      * @param view
      */
     public void showNormalPop(View view) {
-
-        //我需要加载自己的url 满足
-        //我可以任选jsbridge方案还是第三方方案 还是原生 不满足
-        //我可以自定义注入的对象名 满足
-        //我可以自定义配置webview 满足
-        //可不可以自定义X5webview
-
-        PopLayerView mLayerView = new PopLayerView(this);
-        WebViewLayerStrategyImpl webViewLayerStrategy = new WebViewLayerStrategyImpl(LayerConfig.dialog5, "hrz_jsb_new.js", "poplayer");
-        mLayerView.setiLayerStrategy(webViewLayerStrategy);
-        //    initWebview(webViewLayerStrategy.getMyWebView());
-
-
-        if (!mLayerView.isShow()) {
-            mLayerView.show();
-        }
-
+        PopLayerView mLayerView = new PopLayerView(this,LayerConfig.dialog5);
+        mLayerView.onShow();
     }
+
 
 
     /**
-     * 显示延迟弹窗
+     * 显示延迟弹窗 倒数5s
      * @param view
      */
     public void showDealyPop(View view) {
-        PopLayerView mLayerView = new PopLayerView(this);
-        WebViewLayerStrategyImpl webViewLayerStrategy = new WebViewLayerStrategyImpl(LayerConfig.dialog3, "hrz_jsb_new.js", "poplayer");
-        mLayerView.setiLayerStrategy(webViewLayerStrategy);
+        PopLayerView mLayerView = new PopLayerView(this,LayerConfig.dialog3);
 
-        Popi  popi = new Popi.Builder()
+        Popi delayPop = new Popi.Builder()
                 .setmPopId(1)
-                .setmPriority(1)
+                .setmPriority(2)
                 .setmCancelType(COUNTDOWN_CANCEL)
                 .setMaxShowTimeLength(5)
-                .setmPopLayerView(mLayerView)
+                .setConcreateLayer(mLayerView.getiLayerStrategy())
                 .build();
 
-        PopManager.getInstance().pushToQueue(popi);
-        PopManager.getInstance().showNextPopi();
+        PopManager.getInstance(this).pushToQueue(delayPop);
+        PopManager.getInstance(this).showNextPopi();
     }
+
 
 
     /**
@@ -81,34 +73,33 @@ public class WebviewActivity extends Activity {
      * @param view
      */
     public void showEventPop(View view) {
-        PopLayerView mLayerView = new PopLayerView(this);
-        WebViewLayerStrategyImpl webViewLayerStrategy = new WebViewLayerStrategyImpl(LayerConfig.dialog4, "hrz_jsb_new.js", "poplayer");
-        mLayerView.setiLayerStrategy(webViewLayerStrategy);
+        PopLayerView mLayerView = new PopLayerView(this,LayerConfig.dialog4);
 
-        Popi  mUpgradePopi = new Popi.Builder()
+        Popi eventPop = new Popi.Builder()
                 .setmPopId(2)
-                .setmPriority(1)
+                .setmPriority(4)
                 .setmCancelType(COUNTDOWN_CANCEL)
                 .setMaxShowTimeLength(5)
                 .setmBeginDate(154885802L)//开始时间 2019-01-30 22:20:28
                 .setmEndDate(1549666666)//结束时间 2019-01-31 22:20:28
-                .setmPopLayerView(mLayerView)
+                .setConcreateLayer(mLayerView.getiLayerStrategy())
                 .build();
 
-        PopManager.getInstance().pushToQueue(mUpgradePopi);
-        PopManager.getInstance().showNextPopi();
+        PopManager.getInstance(this).pushToQueue(eventPop);
+        PopManager.getInstance(this).showNextPopi();
     }
+
+
 
     /**
      * 限定次数5次
      * @param view
      */
     public void showTimePop(View view) {
-        PopLayerView mLayerView = new PopLayerView(this);
-        WebViewLayerStrategyImpl webViewLayerStrategy = new WebViewLayerStrategyImpl(LayerConfig.dialog6, "hrz_jsb_new.js", "poplayer");
-        mLayerView.setiLayerStrategy(webViewLayerStrategy);
 
-        Popi mUpgradePopi = new Popi.Builder()
+        PopLayerView mLayerView = new PopLayerView(this,LayerConfig.dialog6);
+
+        Popi timePop = new Popi.Builder()
                 .setmPopId(3)
                 .setmPriority(1)
                 .setmCancelType(TRIGGER_CANCEL)
@@ -116,21 +107,52 @@ public class WebviewActivity extends Activity {
                 .setMaxShowCount(5)
                 .setmBeginDate(154885802L)//开始时间 2019-01-30 22:20:28
                 .setmEndDate(1549666666)//结束时间 2019-01-31 22:20:28
-                .setmPopLayerView(mLayerView)
+                .setConcreateLayer(mLayerView.getiLayerStrategy())
                 .build();
 
-        PopManager.getInstance().pushToQueue(mUpgradePopi);
-        PopManager.getInstance().showNextPopi();
+        PopManager.getInstance(this).pushToQueue(timePop);
+        PopManager.getInstance(this).showNextPopi();
     }
 
 
+    public void showPriorityPop(View view){
+
+
+        PopLayerView mLayerView = new PopLayerView(this,LayerConfig.dialog6);
+
+        Popi eventPop = new Popi.Builder()
+                .setmPopId(2)
+                .setmPriority(4)
+                .setmCancelType(COUNTDOWN_CANCEL)
+                .setMaxShowTimeLength(5)
+                .setmBeginDate(154885802L)//开始时间 2019-01-30 22:20:28
+                .setmEndDate(1549666666)//结束时间 2019-01-31 22:20:28
+                .setConcreateLayer(mLayerView.getiLayerStrategy())
+                .build();
+
+
+
+        PopLayerView mLayerView1 = new PopLayerView(this,LayerConfig.dialog5);
+
+        Popi timePop = new Popi.Builder()
+                .setmPopId(3)
+                .setmPriority(1)
+                .setmCancelType(TRIGGER_CANCEL)
+                .setMaxShowTimeLength(5)
+                .setMaxShowCount(5)
+                .setmBeginDate(154885802L)//开始时间 2019-01-30 22:20:28
+                .setmEndDate(1549666666)//结束时间 2019-01-31 22:20:28
+                .setConcreateLayer(mLayerView1.getiLayerStrategy())
+                .build();
 
 
 
 
 
-
-
+        PopManager.getInstance(this).pushToQueue(timePop);
+        PopManager.getInstance(this).pushToQueue(eventPop);
+        PopManager.getInstance(this).showNextPopi();
+    }
 
 
     /**
@@ -138,14 +160,8 @@ public class WebviewActivity extends Activity {
      * @param view
      */
     public void showRpRain(View view) {
-        PopLayerView mLayerView = new PopLayerView(this);
-        WebViewLayerStrategyImpl webViewLayerStrategy = new WebViewLayerStrategyImpl(LayerConfig.redPocketScheme, "hrz_jsb_new.js", "poplayer");
-        mLayerView.setiLayerStrategy(webViewLayerStrategy);
-     //   initWebview(webViewLayerStrategy.getMyWebView());
-
-        if (!mLayerView.isShow()) {
-            mLayerView.show();
-        }
+        PopLayerView mLayerView = new PopLayerView(this,LayerConfig.redPocketScheme);
+        mLayerView.onShow();
     }
 
 //

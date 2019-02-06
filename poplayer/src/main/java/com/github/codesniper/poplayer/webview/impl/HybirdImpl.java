@@ -1,9 +1,11 @@
 package com.github.codesniper.poplayer.webview.impl;
 
 import android.content.Context;
+import android.util.Log;
 import android.webkit.WebView;
 
 
+import com.github.codesniper.poplayer.custom.PopWebView;
 import com.github.codesniper.poplayer.util.PopUtils;
 import com.github.codesniper.poplayer.webview.inter.HybirdManager;
 
@@ -17,6 +19,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import static com.github.codesniper.poplayer.config.LayerConfig.POP_TAG;
+
 /**
  *  Poplayer默认的交互机制
  */
@@ -27,6 +31,7 @@ public class HybirdImpl implements HybirdManager {
     @Override
     public void injectJsBridge(WebView webView,String JsName) {
         webView.loadUrl("javascript:" + PopUtils.getJsCode(webView.getContext(),JsName));
+        Log.d(POP_TAG,"注入JSBrige成功");
     }
 
     /**
@@ -35,6 +40,9 @@ public class HybirdImpl implements HybirdManager {
      */
     @Override
     public void invokeAppServices(String instruction) {
+
+        Log.d(POP_TAG,"接收到指令"+instruction);
+
 
         try{
             PopWebViewService popWebViewService=null;
@@ -76,10 +84,5 @@ public class HybirdImpl implements HybirdManager {
         }
     }
 
-    @Override
-    public void addUpJavaNativeJSInterface(WebView webView,String name) {
-        PopWebViewService service=new PopWebViewService(webView);
-        service.setHybirdManager(this);
-        webView.addJavascriptInterface(service,name);
-    }
+
 }

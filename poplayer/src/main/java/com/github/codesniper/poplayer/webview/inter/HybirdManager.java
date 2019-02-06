@@ -6,6 +6,8 @@ package com.github.codesniper.poplayer.webview.inter;
 
 import android.webkit.WebView;
 
+import com.github.codesniper.poplayer.custom.PopWebView;
+
 /**
  * 混合开发管理 让用户自己实现
  */
@@ -16,8 +18,5 @@ public interface HybirdManager {
 
     //调用本地提供的基础服务 时机 1.jsprompt 2.post请求 3.原生 4.shouldoverridUrl
     void invokeAppServices(String instruction) ;
-
-    //加入JS中android本地对象 时机webview初始化
-    void addUpJavaNativeJSInterface(WebView webView, String windowObjName);
 
 }

@@ -15,6 +15,7 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 
 import static com.github.codesniper.poplayer.config.LayerConfig.COUNTDOWN_CANCEL;
+import static com.github.codesniper.poplayer.config.LayerConfig.POP_TAG;
 
 
 /**
@@ -24,6 +25,8 @@ public class PopManager implements PopDismissListener {
 
     private final String TAG=getClass().getSimpleName();
 
+    private Context mContext;
+
     //每添加完一个元素都会进行堆排序对队列进行优先级调整  先入先出
     private static PriorityQueue<Popi> queue=new PriorityQueue();
 
@@ -31,22 +34,28 @@ public class PopManager implements PopDismissListener {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            mPopi.getContent().dismiss();
+            mPopi.getContent().dissmissLayer(mContext);
         }
     };
 
     private static PopManager mInstance;
 
-    public static PopManager getInstance(){
+    public static PopManager getInstance(Context context){
         if(mInstance==null){
             synchronized (PopManager.class){
                 if(mInstance==null){
-                    mInstance=new PopManager();
+                    mInstance=new PopManager(context);
                 }
             }
         }
         return mInstance;
     }
+
+
+    private PopManager(Context context){
+        mContext=context.getApplicationContext();
+    }
+
 
     private Popi mPopi;
 
@@ -67,9 +76,9 @@ public class PopManager implements PopDismissListener {
         if(!isAlreadyInQueue(popi,queue)){
             queue.add(popi);
         }
-        //队列中弹窗消失时的操作
-        PopLayerView hrzLayerView=popi.getContent();
-        hrzLayerView.setListener(this);
+//        //队列中弹窗消失时的操作
+//        PopLayerView hrzLayerView=popi.getContent();
+//        hrzLayerView.setListener(this);
 
 
 
@@ -118,13 +127,13 @@ public class PopManager implements PopDismissListener {
 
             String key="PopiItem"+mPopi.getPopId();
             Log.e(TAG,key);
-            Context context=mPopi.getContent().getContext().getApplicationContext();
+
 
 
             //用sp将显示次数保存  大于显示次数就不显示
             if(mPopi.getMaxShowCount()>0){
-                Log.e(TAG,"sp:"+SPUtils.getInstance(context).getInt(key));
-                if(SPUtils.getInstance(context).getInt(key)>=mPopi.getMaxShowCount()){
+                Log.e(TAG,"sp:"+SPUtils.getInstance(mContext).getInt(key));
+                if(SPUtils.getInstance(mContext).getInt(key)>=mPopi.getMaxShowCount()){
                     Log.e(TAG,"显示最大次数");
                     removeTopPopi();
                     return;
@@ -132,7 +141,7 @@ public class PopManager implements PopDismissListener {
             }
 
             //显示弹窗
-            mPopi.getContent().show();
+            mPopi.getContent().showLayer(mContext);
 
             if(mPopi.getCancelType()==COUNTDOWN_CANCEL){
                 Log.e(TAG,"延迟取消");
@@ -141,9 +150,9 @@ public class PopManager implements PopDismissListener {
 
             //记录 当前弹窗显示的次数
             if(mPopi.getMaxShowCount()>0&&mPopi.getMaxShowCount()!=Integer.MAX_VALUE-1){
-                int existTime=SPUtils.getInstance(context).getInt(key)+1;
+                int existTime=SPUtils.getInstance(mContext).getInt(key)+1;
                 Log.e(TAG,"已经显示了"+existTime+"次");
-                SPUtils.getInstance(context).put(key,existTime);
+                SPUtils.getInstance(mContext).put(key,existTime);
             }
         }
     }
@@ -155,7 +164,8 @@ public class PopManager implements PopDismissListener {
     public void clear(){
         queue.clear();
         if(mPopi!=null){
-            mPopi.getContent().dismiss();
+            mPopi.getContent().dissmissLayer(mContext);
+            mPopi.getContent().recycleLayer(mContext);
         }
     }
 
@@ -196,7 +206,7 @@ public class PopManager implements PopDismissListener {
 
     @Override
     public void onPopDimiss() {
-        Log.e("xxx","原生弹窗消失了 回调自定义的消失接口");
+        Log.e(POP_TAG,"弹窗消失,显示队列中下个弹窗");
         //当入队的弹窗消失了移除队列头部实体 显示下一个
         removeTopPopi();
         showNextPopi();

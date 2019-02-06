@@ -10,10 +10,15 @@ import android.view.View;
 import android.webkit.WebView;
 
 import com.github.codesniper.poplayer.config.LayerConfig;
+import com.github.codesniper.poplayer.config.PopDismissListener;
+import com.github.codesniper.poplayer.config.WebDismissListener;
 import com.github.codesniper.poplayer.interfaces.LayerTouchSystem;
 import com.github.codesniper.poplayer.util.PopUtils;
+import com.github.codesniper.poplayer.webview.service.PopWebViewService;
 
 import static android.content.ContentValues.TAG;
+import static com.github.codesniper.poplayer.config.LayerConfig.POP_OBJ;
+import static com.github.codesniper.poplayer.config.LayerConfig.POP_TAG;
 
 /**
  * @Author：陈鸿 on 2019\2\2 0002 21:24
@@ -22,20 +27,31 @@ import static android.content.ContentValues.TAG;
 public class PopWebView extends WebView implements IPop,View.OnTouchListener {
 
 
+
     private int mTouchType=-1;
     private LayerTouchSystem layerTouchSystemImpl;
 
     public PopWebView(Context context) {
         super(context);
+        initPopWebView();
+
     }
 
     public PopWebView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        initPopWebView();
     }
 
     public PopWebView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        initPopWebView();
     }
+
+    private void initPopWebView(){
+        Log.d(POP_TAG,"popweb初始化");
+        setOnTouchListener(this);
+    }
+
 
     public void setLayerTouchSystemImpl(LayerTouchSystem layerTouchSystemImpl) {
         this.layerTouchSystemImpl = layerTouchSystemImpl;
@@ -43,7 +59,7 @@ public class PopWebView extends WebView implements IPop,View.OnTouchListener {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        Log.e("xxx","WEBVIEW收到分发事件");
+       // Log.e("xxx","WEBVIEW收到分发事件");
         return super.dispatchTouchEvent(ev);
     }
 
@@ -56,28 +72,28 @@ public class PopWebView extends WebView implements IPop,View.OnTouchListener {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if(mTouchType==LayerConfig.POP_TOUCH_WEB){//交给网页处理
-            Log.e("xxx","onTouchEvent"+"交给网页处理");
+       //     Log.e("xxx","onTouchEvent"+"交给网页处理");
             return super.onTouchEvent(event);
         }else {//交给原生处理
-            Log.e("xxx","onTouchEvent"+"交给原生处理");
+       //     Log.e("xxx","onTouchEvent"+"交给原生处理");
             return false;
         }
     }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        Log.e("xxx","WEBVIEW的拦截事件");
+      //  Log.e("xxx","WEBVIEW的拦截事件");
         return super.onInterceptTouchEvent(ev);
     }
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
 
-        Log.e("xxx","触摸1");
+    //    Log.e("xxx","触摸1");
 
         if(layerTouchSystemImpl==null) return false;
 
-        Log.e("xxx","触摸2");
+     //   Log.e("xxx","触摸2");
 
         int alpha=0;
         //每一次触摸生成bitmap
@@ -92,10 +108,10 @@ public class PopWebView extends WebView implements IPop,View.OnTouchListener {
 
         if(alpha==255){//实体
             layerTouchSystemImpl.onTouchSolidArea(this);
-            Log.e(TAG,"触摸监听器为true 消费调 webview的ontouch不执行");
+    //        Log.e(TAG,"触摸监听器为true 消费调 webview的ontouch不执行");
         }else {
             layerTouchSystemImpl.onTouchOutSideArea(this);
-            Log.e(TAG,"设置触摸监听器:返回false");
+     //       Log.e(TAG,"设置触摸监听器:返回false");
         }
         return false;
     }
@@ -103,6 +119,6 @@ public class PopWebView extends WebView implements IPop,View.OnTouchListener {
     @Override
     public void onPopTouch(int touchStatus) {
         mTouchType=touchStatus;
-        Log.e("xxx","设置了触摸状态"+touchStatus);
+     //   Log.e("xxx","设置了触摸状态"+touchStatus);
     }
 }

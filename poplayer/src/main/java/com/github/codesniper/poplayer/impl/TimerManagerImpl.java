@@ -5,7 +5,11 @@ package com.github.codesniper.poplayer.impl;
 //Code Programming By MrCodeSniper on 2018/7/4.Best Wishes to You!  []~(~▽~)~* Cheers!
 
 
+import android.util.Log;
+
 import com.github.codesniper.poplayer.interfaces.TimerManager;
+
+import static com.github.codesniper.poplayer.config.LayerConfig.POP_TAG;
 
 /**
  * 时间次数管理实现类
@@ -13,24 +17,23 @@ import com.github.codesniper.poplayer.interfaces.TimerManager;
  */
 public class TimerManagerImpl implements TimerManager {
 
-
     @Override
     public void onCountOut() {
-
+        Log.d(POP_TAG,"弹窗显示达到最大次数");
     }
 
     @Override
     public void onShowTimeOut() {
-
+        Log.d(POP_TAG,"弹窗持续时间到");
     }
 
     @Override
     public void onTimeEnd() {
-
+        Log.d(POP_TAG,"弹窗超出截止时间");
     }
 
     @Override
     public void onTimeEarly() {
-
+        Log.d(POP_TAG,"弹窗还没到生效时间");
     }
 }

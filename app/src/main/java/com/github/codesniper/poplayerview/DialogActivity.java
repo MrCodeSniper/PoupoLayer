@@ -19,11 +19,7 @@ public class DialogActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dialog_subject);
-
     }
-
-
-
 
     /**
      * 普通弹窗无需纳入管理
@@ -31,42 +27,36 @@ public class DialogActivity extends AppCompatActivity {
      * @param view
      */
     public void showNormalDialog(View view) {
-        PopLayerView mLayerView = new PopLayerView(this);
-        mLayerView.setiLayerStrategy(new DialogLayerStrategyImpl(R.layout.common_dialog_upgrade_app, R.style.FullTransDialog));
-        mLayerView.show();
+        PopLayerView mLayerView = new PopLayerView(this,R.layout.common_dialog_upgrade_app);
+        mLayerView.onShow();
     }
 
 
     public void showDelayDialog(View view) {
 
 
-        PopLayerView  mLayerView = new PopLayerView(this);
-            mLayerView.setiLayerStrategy(new DialogLayerStrategyImpl(R.layout.common_dialog_upgrade_app, R.style.FullTransDialog));
 
-
+        PopLayerView  mLayerView = new PopLayerView(this,R.layout.common_dialog_upgrade_app);
 
         Popi  mUpgradePopi = new Popi.Builder()
                     .setmPopId(1)
                     .setmPriority(1)
                     .setmCancelType(COUNTDOWN_CANCEL)
                     .setMaxShowTimeLength(5)
-                    .setmPopLayerView(mLayerView)
+                    .setConcreateLayer(mLayerView.getiLayerStrategy())
                     .build();
 
 
         Log.e("tag", mUpgradePopi.toString());
 
-        PopManager.getInstance().pushToQueue(mUpgradePopi);
-        PopManager.getInstance().showNextPopi();
+        PopManager.getInstance(this).pushToQueue(mUpgradePopi);
+        PopManager.getInstance(this).showNextPopi();
     }
 
 
     public void showDateDialog(View view) {
 
-        PopLayerView    mLayerView = new PopLayerView(this);
-            mLayerView.setiLayerStrategy(new DialogLayerStrategyImpl(R.layout.common_dialog_upgrade_app, R.style.FullTransDialog));
-
-
+        PopLayerView  mLayerView = new PopLayerView(this,R.layout.common_dialog_upgrade_app);
 
         Popi  mUpgradePopi = new Popi.Builder()
                     .setmPopId(2)
@@ -75,17 +65,16 @@ public class DialogActivity extends AppCompatActivity {
                     .setMaxShowTimeLength(5)
                     .setmBeginDate(1548858028L)//开始时间 2019-01-30 22:20:28
                     .setmEndDate(1548944428)//结束时间 2019-01-31 22:20:28
-                    .setmPopLayerView(mLayerView)
+                    .setConcreateLayer(mLayerView.getiLayerStrategy())
                     .build();
 
-        PopManager.getInstance().pushToQueue(mUpgradePopi);
-        PopManager.getInstance().showNextPopi();
+        PopManager.getInstance(this).pushToQueue(mUpgradePopi);
+        PopManager.getInstance(this).showNextPopi();
     }
 
     public void showTimeDialog(View view) {
 
-        PopLayerView mLayerView = new PopLayerView(this);
-        mLayerView.setiLayerStrategy(new DialogLayerStrategyImpl(R.layout.common_dialog_upgrade_app, R.style.FullTransDialog));
+        PopLayerView mLayerView = new PopLayerView(this,R.layout.common_dialog_upgrade_app);
 
 
         Popi mUpgradePopi = new Popi.Builder()
@@ -96,19 +85,18 @@ public class DialogActivity extends AppCompatActivity {
                 .setMaxShowCount(5)
                 .setmBeginDate(1548858028L)//开始时间 2019-01-30 22:20:28
                 .setmEndDate(1548944428L)//结束时间 2019-01-31 22:20:28
-                .setmPopLayerView(mLayerView)
+                .setConcreateLayer(mLayerView.getiLayerStrategy())
                 .build();
 
-        PopManager.getInstance().pushToQueue(mUpgradePopi);
-        PopManager.getInstance().showNextPopi();
+        PopManager.getInstance(this).pushToQueue(mUpgradePopi);
+        PopManager.getInstance(this).showNextPopi();
     }
 
 
     public void showPriorityDialog(View view) {
 
 
-        PopLayerView mLayerView = new PopLayerView(this);
-        mLayerView.setiLayerStrategy(new DialogLayerStrategyImpl(R.layout.common_dialog_upgrade_app, R.style.FullTransDialog));
+        PopLayerView mLayerView = new PopLayerView(this,R.layout.common_dialog_upgrade_app);
 
         Popi mUpgradePopi = new Popi.Builder()
                 .setmPopId(4)
@@ -118,14 +106,13 @@ public class DialogActivity extends AppCompatActivity {
                 .setMaxShowCount(5)
                 .setmBeginDate(1548858028)//开始时间 2019-01-30 22:20:28
                 .setmEndDate(1548944428)//结束时间 2019-01-31 22:20:28
-                .setmPopLayerView(mLayerView)
+                .setConcreateLayer(mLayerView.getiLayerStrategy())
                 .build();
 
-        PopManager.getInstance().pushToQueue(mUpgradePopi);
+        PopManager.getInstance(this).pushToQueue(mUpgradePopi);
 
 
-        PopLayerView mLayerView1 = new PopLayerView(this);
-        mLayerView1.setiLayerStrategy(new DialogLayerStrategyImpl(R.layout.common_dialog_upgrade_app2, R.style.FullTransDialog, mLayerView1));
+        PopLayerView mLayerView1 = new PopLayerView(this,R.layout.common_dialog_upgrade_app2);
 
         Popi mUpgradePopi1 = new Popi.Builder()
                 .setmPopId(5)
@@ -135,13 +122,13 @@ public class DialogActivity extends AppCompatActivity {
                 .setMaxShowCount(5)
                 .setmBeginDate(1548858028)//开始时间 2019-01-30 22:20:28
                 .setmEndDate(1548944428)//结束时间 2019-01-31 22:20:28
-                .setmPopLayerView(mLayerView1)
+                .setConcreateLayer(mLayerView1.getiLayerStrategy())
                 .build();
 
-        PopManager.getInstance().pushToQueue(mUpgradePopi1);
+        PopManager.getInstance(this).pushToQueue(mUpgradePopi1);
 
 
-        PopManager.getInstance().showNextPopi();
+        PopManager.getInstance(this).showNextPopi();
 
 
     }

@@ -10,9 +10,14 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.github.codesniper.poplayer.PopLayerView;
 import com.github.codesniper.poplayer.R;
+import com.github.codesniper.poplayer.config.PopDismissListener;
+import com.github.codesniper.poplayer.config.WebDismissListener;
+import com.github.codesniper.poplayer.custom.IPop;
 import com.github.codesniper.poplayer.custom.PopWebView;
 import com.github.codesniper.poplayer.interfaces.LayerTouchSystem;
+import com.github.codesniper.poplayer.pop.PopManager;
 import com.github.codesniper.poplayer.strategy.LayerLifecycle;
 import com.github.codesniper.poplayer.util.PopUtils;
 import com.github.codesniper.poplayer.webview.inter.HybirdManager;
@@ -22,6 +27,7 @@ import com.github.codesniper.poplayer.webview.impl.PopWebTouchImpl;
 import com.github.codesniper.poplayer.webview.impl.WebConfigImpl;
 
 import static android.content.ContentValues.TAG;
+import static com.github.codesniper.poplayer.config.LayerConfig.POP_TAG;
 
 /**
  * @Author：陈鸿 on 2019\2\2 0002 21:11
@@ -30,53 +36,34 @@ import static android.content.ContentValues.TAG;
 public class WebViewLayerStrategyImpl implements LayerLifecycle {
 
 
-    private WebviewConfig mWebViewConfigImpl;
-
     private LayerTouchSystem mLayerTouchSystemImpl;
-
-    private PopWebView myWebView;
-
-    private String globalLoadScheme;
-
-    private boolean isWebViewAttached=false;
 
     private HybirdManager mHibirdImp;
 
-    private String jsBridgeFileName;
+    private PopWebView myWebView;
 
-    private String jsObjName;
+    private boolean isWebViewAttached=false;
 
-    public WebViewLayerStrategyImpl(String globalLoadScheme, String jsBridgeFileName, String jsObjName) {
+    private Context mContext;
+
+    //加载url
+    private String globalLoadScheme;
+
+    public WebViewLayerStrategyImpl(String globalLoadScheme) {
         this.globalLoadScheme = globalLoadScheme;
-        this.jsBridgeFileName = jsBridgeFileName;
-        this.jsObjName = jsObjName;
     }
-
-    public void setmWebViewConfigImpl(WebviewConfig mWebViewConfigImpl) {
-        this.mWebViewConfigImpl = mWebViewConfigImpl;
-    }
-
-    public void setmHibirdImp(HybirdManager mHibirdImp) {
-        this.mHibirdImp = mHibirdImp;
-    }
-
-    public void setWebView(PopWebView myWebView) {
-        this.myWebView = myWebView;
-    }
-
-    public PopWebView getMyWebView() {
-        return myWebView;
-    }
-
 
 
     //必须保证oncreate在set之前执行
     @Override
-    public void onCreate(Context context) {
+    public void createLayerView(final Context context) {
+        mContext=context;
         //如果用户没有传入webview 则用默认的全屏透明的webview
         if(myWebView==null){
 
             isWebViewAttached=false;
+
+            //解析webview对象
             ViewGroup view= (ViewGroup) LayoutInflater.from(context).inflate(R.layout.poplayer_default_weblayout, null,false);
             myWebView= view.findViewById(R.id.myWeb);
             view.removeAllViews();
@@ -84,22 +71,20 @@ public class WebViewLayerStrategyImpl implements LayerLifecycle {
             mHibirdImp=new HybirdImpl();
             mLayerTouchSystemImpl=new PopWebTouchImpl();
 
-            WebConfigImpl webConfig=new WebConfigImpl(jsBridgeFileName,jsObjName);
+            //设置webconfig
+            WebConfigImpl webConfig=new WebConfigImpl();
             webConfig.setHybirdManager(mHibirdImp);
-            mWebViewConfigImpl=webConfig;
-            mWebViewConfigImpl.setUpWebConfig(myWebView,globalLoadScheme);
-
-            myWebView.setOnTouchListener(myWebView);
+            webConfig.setUpWebConfig(myWebView,globalLoadScheme);
         }
     }
 
     @Override
-    public void onInit(Context context) {
+    public void initLayerView(Context context) {
         myWebView.setLayerTouchSystemImpl(mLayerTouchSystemImpl);
     }
 
     @Override
-    public void onShow(Context context) {
+    public void showLayer(Context context) {
         if(isWebViewAttached){
             Log.e("xxx","显示1");
             myWebView.setVisibility(View.VISIBLE);
@@ -112,14 +97,18 @@ public class WebViewLayerStrategyImpl implements LayerLifecycle {
     }
 
     @Override
-    public void onDismiss(Context context) {
+    public void dissmissLayer(Context context) {
+        Log.e(POP_TAG,"WebView onDismiss");
+
         if(myWebView!=null){
             myWebView.setVisibility(View.GONE);
         }
+
+        PopManager.getInstance(context).onPopDimiss();
     }
 
     @Override
-    public void onRecycle(Context context) {
+    public void recycleLayer(Context context) {
         if(myWebView!=null){
             myWebView.stopLoading();
             myWebView.clearHistory();
@@ -127,6 +116,17 @@ public class WebViewLayerStrategyImpl implements LayerLifecycle {
             myWebView.loadUrl("about:blank");
             myWebView.pauseTimers();
             myWebView = null;
+            isWebViewAttached=false;
         }
+    }
+
+    @Override
+    public IPop getLayerConcreteView() {
+        return myWebView;
+    }
+
+    @Override
+    public Context getLayerContext() {
+        return mContext;
     }
 }

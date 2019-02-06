@@ -6,6 +6,7 @@ package com.github.codesniper.poplayer.pop;
 
 
 import com.github.codesniper.poplayer.PopLayerView;
+import com.github.codesniper.poplayer.strategy.LayerLifecycle;
 
 import static com.github.codesniper.poplayer.config.LayerConfig.COUNTDOWN_CANCEL;
 import static com.github.codesniper.poplayer.config.LayerConfig.TRIGGER_CANCEL;
@@ -17,6 +18,8 @@ import static com.github.codesniper.poplayer.config.LayerConfig.TRIGGER_CANCEL;
  * 窗口的最小不可分割实体 根据优先级进行排序
  */
 public class Popi implements Comparable<Popi> {
+
+
 
     //弹窗类型
     private PopType mType;
@@ -34,7 +37,7 @@ public class Popi implements Comparable<Popi> {
     private int maxShowTimeLength;
 
     //弹窗内容视图 可为空
-    private PopLayerView content;
+    private LayerLifecycle content;
 
     //时间撮形式的开始时间和结束时间 1974-11-28 23:10:31~2460-10-21 13:32:10
     private long beginDate;
@@ -93,7 +96,7 @@ public class Popi implements Comparable<Popi> {
         this.maxShowCount = maxShowCount;
     }
 
-    public PopLayerView getContent() {
+    public LayerLifecycle getContent() {
         return content;
     }
 
@@ -120,7 +123,7 @@ public class Popi implements Comparable<Popi> {
 
     public static class Builder {
 
-        private PopLayerView mPopLayerView;
+        private LayerLifecycle mPopLayerView;
         private PopType mPopType;
         private int maxShowCount=Integer.MAX_VALUE - 1;
         private int mPopId;
@@ -136,7 +139,7 @@ public class Popi implements Comparable<Popi> {
             return this;
         }
 
-        public Builder setmPopLayerView(PopLayerView mPopLayerView) {
+        public Builder setConcreateLayer(LayerLifecycle mPopLayerView) {
             this.mPopLayerView = mPopLayerView;
             return this;
         }
@@ -186,7 +189,7 @@ public class Popi implements Comparable<Popi> {
         }
 
         public void pushToQueue() {
-            PopManager.getInstance().pushToQueue(build());
+            PopManager.getInstance(mPopLayerView.getLayerContext()).pushToQueue(build());
         }
 
     }

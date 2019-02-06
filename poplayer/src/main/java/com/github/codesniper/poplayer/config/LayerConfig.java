@@ -15,11 +15,16 @@ public class LayerConfig {
     public static final String dialog6="file:///android_asset/dialog6.html";
     public static final String dialog5="file:///android_asset/dialog5.html";
 
-    public static final int STATE_WEBVIEW=1;
-    public static final int STATE_DIALOG=0;
 
+    //触摸区域常量 0为web组件 1为原生组件
     public static final int POP_TOUCH_WEB=0;
     public static final int POP_TOUCH_NATIVE=1;
+
+    public static final String POP_TAG="PopLayer";
+
+    public static final String POP_JSB="poplayer_jsb.js";
+
+    public static final String POP_OBJ="poplayer";
 
     //弹窗的取消方式 0为点击消失 1为计时消失
     public static int TRIGGER_CANCEL=0;

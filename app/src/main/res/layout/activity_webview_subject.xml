@@ -51,7 +51,7 @@
         android:onClick="showPriorityPop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="将4个弹窗根据优先级纳入管理"
+        android:text="将3个弹窗根据优先级纳入管理"
         />
 
 

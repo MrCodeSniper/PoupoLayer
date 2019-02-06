@@ -7,6 +7,8 @@ import android.webkit.WebView;
 
 import com.github.codesniper.poplayer.webview.inter.HybirdManager;
 
+import static com.github.codesniper.poplayer.config.LayerConfig.POP_JSB;
+
 /**
  * @Author：陈鸿 on 2019\2\2 0002 22:16
  * 邮箱：15168264355@163.com
@@ -14,12 +16,6 @@ import com.github.codesniper.poplayer.webview.inter.HybirdManager;
 public class PopWebViewChromeClient extends WebChromeClient {
 
     private HybirdManager mHybirdImpl;
-
-    private String jsBridgeName;
-
-    public PopWebViewChromeClient(String jsBridgeName) {
-        this.jsBridgeName = jsBridgeName;
-    }
 
     public void setmHybirdImpl(HybirdManager mHybirdImpl) {
         this.mHybirdImpl = mHybirdImpl;
@@ -38,7 +34,7 @@ public class PopWebViewChromeClient extends WebChromeClient {
     public void onReceivedTitle(WebView view, String title) {
         //注入JSBridge的时机
         if(mHybirdImpl!=null){
-            mHybirdImpl.injectJsBridge(view,jsBridgeName);
+            mHybirdImpl.injectJsBridge(view,POP_JSB);
         }
         super.onReceivedTitle(view, title);
     }

@@ -22,5 +22,4 @@ public class PopWebViewSecurity {
             tr.printStackTrace();
         }
     }
-
 }

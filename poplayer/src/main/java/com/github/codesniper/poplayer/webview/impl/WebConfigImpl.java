@@ -6,12 +6,15 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 
 
+import com.github.codesniper.poplayer.custom.PopWebView;
 import com.github.codesniper.poplayer.webview.inter.HybirdManager;
 import com.github.codesniper.poplayer.webview.inter.WebviewConfig;
 import com.github.codesniper.poplayer.webview.client.PopWebViewChromeClient;
 import com.github.codesniper.poplayer.webview.client.PopWebViewClient;
 import com.github.codesniper.poplayer.webview.config.PopWebViewSecurity;
+import com.github.codesniper.poplayer.webview.service.PopWebViewService;
 
+import static com.github.codesniper.poplayer.config.LayerConfig.POP_OBJ;
 import static com.github.codesniper.poplayer.util.PopUtils.initFilePermission;
 import static com.github.codesniper.poplayer.util.PopUtils.isAppInDebug;
 
@@ -21,20 +24,10 @@ public  class WebConfigImpl implements WebviewConfig {
 
     private HybirdManager hybirdManager;
 
-    private String jsBridgeFileName;
-
-    private String jsObjectName;
-
-    public WebConfigImpl(String jsBridgeFileName, String jsObjectName) {
-        this.jsBridgeFileName = jsBridgeFileName;
-        this.jsObjectName = jsObjectName;
-    }
-
-
     ///////////////////////////////////////配置WEBVIEW 待后续继续优化 参考网易考拉团队webview优化////////////////////////////////
 
     @Override
-    public void setUpWebConfig(WebView webView,String showScheme) {
+    public void setUpWebConfig(PopWebView webView, String showScheme) {
 
         //开启debug模式
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && isAppInDebug(webView.getContext())) {
@@ -44,13 +37,17 @@ public  class WebConfigImpl implements WebviewConfig {
         initFilePermission(webView,true);
 
         /** webviewchromeclient **/
-        webView.setWebChromeClient(new PopWebViewChromeClient(jsBridgeFileName));
+        PopWebViewChromeClient popWebViewChromeClient=new PopWebViewChromeClient();
+        webView.setWebChromeClient(popWebViewChromeClient);
 
         /** webviewclient **/
         PopWebViewClient popWebViewClient=new PopWebViewClient();
+
         if(hybirdManager!=null){
+            popWebViewChromeClient.setmHybirdImpl(hybirdManager);
             popWebViewClient.setListener(hybirdManager);
         }
+
         webView.setWebViewClient(popWebViewClient);
 
 
@@ -66,9 +63,12 @@ public  class WebConfigImpl implements WebviewConfig {
         //加载url
         webView.loadUrl(showScheme);
 
+        //加入底层服务
+        PopWebViewService popWebViewService=new PopWebViewService(webView);
         if(hybirdManager!=null){
-            hybirdManager.addUpJavaNativeJSInterface(webView,jsObjectName);
+            popWebViewService.setHybirdManager(hybirdManager);
         }
+        webView.addJavascriptInterface(popWebViewService,POP_OBJ);
     }
 
 

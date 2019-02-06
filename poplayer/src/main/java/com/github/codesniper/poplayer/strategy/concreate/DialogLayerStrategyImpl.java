@@ -13,6 +13,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.github.codesniper.poplayer.PopLayerView;
+import com.github.codesniper.poplayer.config.PopDismissListener;
+import com.github.codesniper.poplayer.custom.IPop;
 import com.github.codesniper.poplayer.custom.PopDialog;
 import com.github.codesniper.poplayer.strategy.LayerLifecycle;
 
@@ -22,55 +24,38 @@ public class DialogLayerStrategyImpl implements LayerLifecycle {
     private int mLayoutRes;
     private PopDialog mDialog;
     private int themeType;
-    private PopLayerView popLayerView;
 
     /**
      * 构造具体的dialog弹窗实现类
      * @param layoutId dialogview的xml布局
      * @param themeResId dialog样式
      */
-
     public DialogLayerStrategyImpl(int layoutId, int themeResId) {
-        this(layoutId,themeResId,null);
-    }
-
-
-    public DialogLayerStrategyImpl(int layoutId, int themeResId,PopLayerView mPopLayerView) {
         this.mLayoutRes = layoutId;
         this.themeType=themeResId;
-        this.popLayerView=mPopLayerView;
     }
 
 
     @Override
-    public void onCreate(Context context) {
+    public void createLayerView(Context context) {
         //配置对象
         if(mDialog==null){
             mDialog=new PopDialog(new ContextThemeWrapper(context,themeType));
-            mDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                @Override
-                public void onDismiss(DialogInterface dialog) {
-                    //弹窗消失时需要通知 Poplayerview弹窗已经消失
-                    if(popLayerView!=null) popLayerView.getPopDismissListener().onPopDimiss();
-                }
-            });
         }
     }
-
-
 
     /*
       配置view
      */
     @Override
-    public void onInit(Context context) {
+    public void initLayerView(Context context) {
         View contentView=LayoutInflater.from(context).inflate(mLayoutRes,null,false);
         mDialog.setContentView(contentView);
     }
 
 
     @Override
-    public void onShow(Context context) {
+    public void showLayer(Context context) {
         if(!mDialog.isShowing()){
             if(context instanceof Activity){
                 Activity activity= (Activity) context;
@@ -84,19 +69,25 @@ public class DialogLayerStrategyImpl implements LayerLifecycle {
     }
 
     @Override
-    public void onDismiss(Context context) {
+    public void dissmissLayer(Context context) {
         if(mDialog!=null){
             mDialog.cancel();
         }
     }
 
     @Override
-    public void onRecycle(Context context) {
+    public void recycleLayer(Context context) {
          mDialog=null;
     }
 
 
-    public PopDialog getmDialog() {
+    @Override
+    public IPop getLayerConcreteView() {
         return mDialog;
+    }
+
+    @Override
+    public Context getLayerContext() {
+        return mDialog.getContext();
     }
 }
