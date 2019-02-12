@@ -1,11 +1,14 @@
 package com.github.codesniper.poplayerview;
 
+import android.hardware.camera2.params.LensShadingMap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.github.codesniper.poplayer.PopLayerView;
+import com.github.codesniper.poplayer.custom.PopCallback;
 import com.github.codesniper.poplayer.pop.PopManager;
 import com.github.codesniper.poplayer.pop.Popi;
 import com.github.codesniper.poplayer.strategy.concreate.DialogLayerStrategyImpl;
@@ -19,6 +22,32 @@ public class DialogActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dialog_subject);
+        PopManager.getInstance(this).setPopCallback(new PopCallback() {
+            @Override
+            public void onPopExisted(int queueSize) {
+
+            }
+
+            @Override
+            public void onPopOutOfDate() {
+                Toast.makeText(DialogActivity.this,"弹窗超出限定时间显示范围", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onPopShowMaxCount() {
+                Toast.makeText(DialogActivity.this,"弹窗显示已经达到最大次数", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onPopShowSuccess() {
+
+            }
+
+            @Override
+            public void onPopDelayDismiss() {
+
+            }
+        });
     }
 
     /**
@@ -43,7 +72,7 @@ public class DialogActivity extends AppCompatActivity {
                     .setmPriority(1)
                     .setmCancelType(COUNTDOWN_CANCEL)
                     .setMaxShowTimeLength(5)
-                    .setConcreateLayer(mLayerView.getiLayerStrategy())
+                    .setLayerView(mLayerView)
                     .build();
 
 
@@ -65,7 +94,7 @@ public class DialogActivity extends AppCompatActivity {
                     .setMaxShowTimeLength(5)
                     .setmBeginDate(1548858028L)//开始时间 2019-01-30 22:20:28
                     .setmEndDate(1548944428)//结束时间 2019-01-31 22:20:28
-                    .setConcreateLayer(mLayerView.getiLayerStrategy())
+                    .setLayerView(mLayerView)
                     .build();
 
         PopManager.getInstance(this).pushToQueue(mUpgradePopi);
@@ -81,11 +110,8 @@ public class DialogActivity extends AppCompatActivity {
                 .setmPopId(3)
                 .setmPriority(1)
                 .setmCancelType(TRIGGER_CANCEL)
-                .setMaxShowTimeLength(5)
-                .setMaxShowCount(5)
-                .setmBeginDate(1548858028L)//开始时间 2019-01-30 22:20:28
-                .setmEndDate(1548944428L)//结束时间 2019-01-31 22:20:28
-                .setConcreateLayer(mLayerView.getiLayerStrategy())
+                .setMaxShowCount(10)
+                .setLayerView(mLayerView)
                 .build();
 
         PopManager.getInstance(this).pushToQueue(mUpgradePopi);
@@ -97,35 +123,24 @@ public class DialogActivity extends AppCompatActivity {
 
 
         PopLayerView mLayerView = new PopLayerView(this,R.layout.common_dialog_upgrade_app);
-
         Popi mUpgradePopi = new Popi.Builder()
                 .setmPopId(4)
                 .setmPriority(10)
                 .setmCancelType(TRIGGER_CANCEL)
-                .setMaxShowTimeLength(5)
-                .setMaxShowCount(5)
-                .setmBeginDate(1548858028)//开始时间 2019-01-30 22:20:28
-                .setmEndDate(1548944428)//结束时间 2019-01-31 22:20:28
-                .setConcreateLayer(mLayerView.getiLayerStrategy())
+                .setLayerView(mLayerView)
                 .build();
-
         PopManager.getInstance(this).pushToQueue(mUpgradePopi);
 
 
         PopLayerView mLayerView1 = new PopLayerView(this,R.layout.common_dialog_upgrade_app2);
-
         Popi mUpgradePopi1 = new Popi.Builder()
                 .setmPopId(5)
                 .setmPriority(2)
                 .setmCancelType(TRIGGER_CANCEL)
-                .setMaxShowTimeLength(5)
-                .setMaxShowCount(5)
-                .setmBeginDate(1548858028)//开始时间 2019-01-30 22:20:28
-                .setmEndDate(1548944428)//结束时间 2019-01-31 22:20:28
-                .setConcreateLayer(mLayerView1.getiLayerStrategy())
+                .setLayerView(mLayerView1)
                 .build();
-
         PopManager.getInstance(this).pushToQueue(mUpgradePopi1);
+
 
 
         PopManager.getInstance(this).showNextPopi();

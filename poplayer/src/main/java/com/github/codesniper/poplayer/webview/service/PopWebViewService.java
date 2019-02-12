@@ -5,9 +5,11 @@ package com.github.codesniper.poplayer.webview.service;
 //Code Programming By MrCodeSniper on 2018/10/27.Best Wishes to You!  []~(~▽~)~* Cheers!
 
 
+import android.util.Log;
 import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
+import android.widget.Toast;
 
 import com.github.codesniper.poplayer.custom.PopWebView;
 import com.github.codesniper.poplayer.pop.PopManager;
@@ -23,6 +25,9 @@ public class PopWebViewService extends Object{
     private PopWebView mWebView;
 
     private HybirdManager hybirdManager;
+
+    public PopWebViewService() {
+    }
 
     public PopWebViewService(PopWebView webView) {
         this.mWebView=webView;
@@ -56,10 +61,16 @@ public class PopWebViewService extends Object{
     /**
      * 提供APP路由服务 from JsBridge
      */
+    @JavascriptInterface
     public void route(String routePath){
         if(hybirdManager!=null) hybirdManager.invokeAppServices(routePath);
     }
 
+
+
+    public void printService(String str){
+        Log.e("PopWebViewService",str);
+    }
 
 
 

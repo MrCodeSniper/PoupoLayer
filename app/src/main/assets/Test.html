@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>测试</title>
+    <style>
+        .jump {
+            width: 100px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background: skyblue;
+            margin: 10px;
+            color: #fff;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+<div class="jump" onclick="routeService()">调用原生路由服务发送命令</div>
+<div class="jump" onclick="jsprompt()">JSPrompt发送命令</div>
+<div class="jump" onclick="openTb()">Post请求发送命令</div>
+<div class="jump" onclick="prodetail()">无视命令来源执行具体服务</div>
+</body>
+<script type="text/javascript" src="js/jquery.min.js" ></script>
+<script>
+    var u = navigator.userAgent;
+
+    //调用底层服务
+    function routeService() {
+        poplayer.route("xxx");
+    }
+
+    function jsprompt(){
+       
+    }
+
+
+    // 商品详情
+    function prodetail() {
+        if (u.indexOf("Android") > -1 || u.indexOf("Adr") > -1) {
+            native.androidJs("XshApp://router?type=prodetail&proId=579887033265");
+        } else {
+            native.prodetail("579887033265");
+        }
+    }
+    //我的收益
+    function myprofit() {
+        if (u.indexOf("Android") > -1 || u.indexOf("Adr") > -1) {
+            native.androidJs("XshApp://router?type=myprofit");
+        } else {
+            native.myprofit();
+        }
+    }
+    //我的红包
+    function redpacket() {
+        if (u.indexOf("Android") > -1 || u.indexOf("Adr") > -1) {
+            native.androidJs("XshApp://router?type=redpacket");
+        } else {
+            native.redpacket();
+        }
+    }
+    //店铺详情
+    function shopdetail() {
+        if (u.indexOf("Android") > -1 || u.indexOf("Adr") > -1) {
+            native.androidJs("XshApp://router?type=shopdetail&shopId=100041848");
+        } else {
+            native.shopdetail("100041848");
+        }
+    }
+
+
+
+
+</script>
+</html>

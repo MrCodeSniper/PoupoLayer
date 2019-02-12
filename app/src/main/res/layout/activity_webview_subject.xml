@@ -62,6 +62,14 @@
         android:text="显示红包雨(特效)"
         />
 
+    <Button
+        android:onClick="showJS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="显示JS交互页"
+        />
+
+
 
 
 

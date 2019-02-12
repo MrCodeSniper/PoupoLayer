@@ -10,10 +10,6 @@ import com.github.codesniper.poplayer.webview.client.PopWebViewChromeClient;
  */
 public class UserChromeClient extends PopWebViewChromeClient {
 
-    public UserChromeClient() {
-        super("jsbrige_name");
-    }
-
 
     @Override
     public boolean onJsPrompt(WebView view, String url, String message, String defaultValue, JsPromptResult result) {

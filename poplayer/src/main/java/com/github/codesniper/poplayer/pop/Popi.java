@@ -139,8 +139,8 @@ public class Popi implements Comparable<Popi> {
             return this;
         }
 
-        public Builder setConcreateLayer(LayerLifecycle mPopLayerView) {
-            this.mPopLayerView = mPopLayerView;
+        public Builder setLayerView(PopLayerView mPopLayerView) {
+            this.mPopLayerView = mPopLayerView.getiLayerStrategy();
             return this;
         }
 

@@ -91,8 +91,10 @@ public class WebViewLayerStrategyImpl implements LayerLifecycle {
         }else {
             Log.e("xxx","显示2");
             //如果不存在直接在window上加
-            ((Activity)context).getWindow().addContentView(myWebView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-            isWebViewAttached=true;
+            if(context instanceof Activity){
+                ((Activity)context).getWindow().addContentView(myWebView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+                isWebViewAttached=true;
+            }
         }
     }
 

@@ -11,7 +11,7 @@ public class TestJs extends Object {
 
     @JavascriptInterface
     public void test(String str){
-        Log.e("xxx",str);
+        Log.e("TestJs",str);
     }
 
 }

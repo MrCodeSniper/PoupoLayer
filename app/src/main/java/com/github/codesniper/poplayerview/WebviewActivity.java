@@ -19,7 +19,10 @@ import com.github.codesniper.poplayer.strategy.concreate.WebViewLayerStrategyImp
 import static com.github.codesniper.poplayer.config.LayerConfig.COUNTDOWN_CANCEL;
 import static com.github.codesniper.poplayer.config.LayerConfig.TRIGGER_CANCEL;
 
-public class WebviewActivity extends Activity {
+/**
+ * 还有bug
+ */
+public class WebviewActivity extends AppCompatActivity {
 
     //我需要加载自己的url 满足
     //我可以任选jsbridge方案还是第三方方案 还是原生 不满足
@@ -59,7 +62,7 @@ public class WebviewActivity extends Activity {
                 .setmPriority(2)
                 .setmCancelType(COUNTDOWN_CANCEL)
                 .setMaxShowTimeLength(5)
-                .setConcreateLayer(mLayerView.getiLayerStrategy())
+                .setLayerView(mLayerView)
                 .build();
 
         PopManager.getInstance(this).pushToQueue(delayPop);
@@ -81,8 +84,8 @@ public class WebviewActivity extends Activity {
                 .setmCancelType(COUNTDOWN_CANCEL)
                 .setMaxShowTimeLength(5)
                 .setmBeginDate(154885802L)//开始时间 2019-01-30 22:20:28
-                .setmEndDate(1549666666)//结束时间 2019-01-31 22:20:28
-                .setConcreateLayer(mLayerView.getiLayerStrategy())
+                .setmEndDate(1559666666)//结束时间 2019-01-31 22:20:28
+                .setLayerView(mLayerView)
                 .build();
 
         PopManager.getInstance(this).pushToQueue(eventPop);
@@ -105,9 +108,7 @@ public class WebviewActivity extends Activity {
                 .setmCancelType(TRIGGER_CANCEL)
                 .setMaxShowTimeLength(5)
                 .setMaxShowCount(5)
-                .setmBeginDate(154885802L)//开始时间 2019-01-30 22:20:28
-                .setmEndDate(1549666666)//结束时间 2019-01-31 22:20:28
-                .setConcreateLayer(mLayerView.getiLayerStrategy())
+                .setLayerView(mLayerView)
                 .build();
 
         PopManager.getInstance(this).pushToQueue(timePop);
@@ -125,9 +126,7 @@ public class WebviewActivity extends Activity {
                 .setmPriority(4)
                 .setmCancelType(COUNTDOWN_CANCEL)
                 .setMaxShowTimeLength(5)
-                .setmBeginDate(154885802L)//开始时间 2019-01-30 22:20:28
-                .setmEndDate(1549666666)//结束时间 2019-01-31 22:20:28
-                .setConcreateLayer(mLayerView.getiLayerStrategy())
+                .setLayerView(mLayerView)
                 .build();
 
 
@@ -140,9 +139,7 @@ public class WebviewActivity extends Activity {
                 .setmCancelType(TRIGGER_CANCEL)
                 .setMaxShowTimeLength(5)
                 .setMaxShowCount(5)
-                .setmBeginDate(154885802L)//开始时间 2019-01-30 22:20:28
-                .setmEndDate(1549666666)//结束时间 2019-01-31 22:20:28
-                .setConcreateLayer(mLayerView1.getiLayerStrategy())
+                .setLayerView(mLayerView1)
                 .build();
 
 
@@ -161,6 +158,15 @@ public class WebviewActivity extends Activity {
      */
     public void showRpRain(View view) {
         PopLayerView mLayerView = new PopLayerView(this,LayerConfig.redPocketScheme);
+        mLayerView.onShow();
+    }
+
+    /**
+     * 显示JS
+     * @param view
+     */
+    public void showJS(View view) {
+        PopLayerView mLayerView = new PopLayerView(this,LayerConfig.jsTest);
         mLayerView.onShow();
     }
 

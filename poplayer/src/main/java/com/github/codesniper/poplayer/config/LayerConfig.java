@@ -14,6 +14,7 @@ public class LayerConfig {
     public static final String dialog1="file:///android_asset/dialog1.html";
     public static final String dialog6="file:///android_asset/dialog6.html";
     public static final String dialog5="file:///android_asset/dialog5.html";
+    public static final String jsTest="file:///android_asset/Test.html";
 
 
     //触摸区域常量 0为web组件 1为原生组件

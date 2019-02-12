@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="center_horizontal"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorAccent"
+        app:title="JS专题"
+        app:titleTextColor="@color/white">
+
+    </android.support.v7.widget.Toolbar>
+
+
+    <Button
+        android:onClick="showWeb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="显示WEB"/>
+
+
+
+</LinearLayout>
