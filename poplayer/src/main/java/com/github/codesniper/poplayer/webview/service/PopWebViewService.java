@@ -16,6 +16,8 @@ import com.github.codesniper.poplayer.pop.PopManager;
 import com.github.codesniper.poplayer.webview.impl.HybirdImpl;
 import com.github.codesniper.poplayer.webview.inter.HybirdManager;
 
+import java.util.Map;
+
 
 /**
  * 提供app基础服务 包含原生和jsbrdge
@@ -57,7 +59,6 @@ public class PopWebViewService extends Object{
         });
     }
 
-
     /**
      * 提供APP路由服务 from JsBridge
      */
@@ -67,9 +68,12 @@ public class PopWebViewService extends Object{
     }
 
 
-
-    public void printService(String str){
-        Log.e("PopWebViewService",str);
+    /**
+     * 反射打印服务
+     * @param map 必须以map为参数
+     */
+    public void printService(Map<String,String> map){
+        Log.e("PopWebViewService",map.get("invokeId"));
     }
 
 

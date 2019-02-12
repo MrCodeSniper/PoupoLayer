@@ -8,7 +8,9 @@ package com.github.codesniper.poplayer.webview.client;
 import android.annotation.TargetApi;
 import android.net.http.SslError;
 import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.text.TextUtils;
+import android.util.Log;
 import android.webkit.SslErrorHandler;
 import android.webkit.ValueCallback;
 import android.webkit.WebResourceRequest;
@@ -18,8 +20,10 @@ import android.webkit.WebViewClient;
 
 import com.github.codesniper.poplayer.webview.inter.HybirdManager;
 
+import static com.github.codesniper.poplayer.config.LayerConfig.POP_TAG;
 
-    public class PopWebViewClient extends WebViewClient{
+
+public class PopWebViewClient extends WebViewClient{
 
     private HybirdManager mHybirdImpl;
 
@@ -39,25 +43,37 @@ import com.github.codesniper.poplayer.webview.inter.HybirdManager;
 
 
     @Override
-    public WebResourceResponse shouldInterceptRequest(WebView webView, String url) {
-        if (url.contains("HRZ_QUEUE_HAS_MESSAGE_V1")) {
-            if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT) {
-                webView.loadUrl("javascript:__HRZCJSBridgeObject.drainMessageQueue()");
-            } else {
-                webView.evaluateJavascript("javascript:__HRZCJSBridgeObject.drainMessageQueue()", new ValueCallback<String>() {
-                    @Override
-                    public void onReceiveValue(String value) {
-                        String postJson = value.replaceAll("\\\\", "");
-                        if (!TextUtils.isEmpty(postJson)) {
-                            if (mHybirdImpl != null) {
-                                mHybirdImpl.invokeAppServices(postJson);
-                            }
-                        }
-                    }
-                });
-            }
+    public WebResourceResponse shouldInterceptRequest(final WebView webView, String url) {
+        //运行在子线程
+        Log.d(POP_TAG,url);
+
+        if(url.contains("__HRZ_QUEUE_HAS_MESSAGE_V1")){
             return null;
         }
+
+        if (url.contains("hrz_client_msg")) {
+            webView.post(new Runnable() {
+                @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+                @Override
+                public void run() {
+                    //必须运行在主线程
+                    webView.evaluateJavascript("javascript:__HRZCJSBridgeObject.drainMessageQueue()", new ValueCallback<String>() {
+                        @Override
+                        public void onReceiveValue(String value) {
+                            Log.d(POP_TAG,"onReceiveValue:"+value);
+                            String postJson = value.replaceAll("\\\\", "");
+                            if (!TextUtils.isEmpty(postJson)) {
+                                if (mHybirdImpl != null) {
+                                    mHybirdImpl.invokeAppServices(postJson);
+                                }
+                            }
+                        }
+                    });
+                }
+            });
+            return null;
+        }
+
         return shouldInterceptRequest(webView, url);
     }
 

@@ -49,6 +49,6 @@ public class PopWebViewChromeClient extends WebChromeClient {
             }
             return true;
         }
-        return false;
+        return super.onJsPrompt(view, url, message, defaultValue, result);
     }
 }

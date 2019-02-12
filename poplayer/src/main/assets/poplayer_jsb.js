@@ -45,7 +45,7 @@
  GlobalMessageObjectQueue = [];
 
   if (HRZSystemConfig.currentPlatform !== 'iPhone') {
-       androidobj.obtainCallBackMsg(messages);
+       poplayer.route(messages);
   }
 
  return messages;

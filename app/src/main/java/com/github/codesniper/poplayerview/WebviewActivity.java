@@ -161,12 +161,15 @@ public class WebviewActivity extends AppCompatActivity {
         mLayerView.onShow();
     }
 
+    private PopWebView webView;
+
     /**
      * 显示JS
      * @param view
      */
     public void showJS(View view) {
         PopLayerView mLayerView = new PopLayerView(this,LayerConfig.jsTest);
+        webView= (PopWebView) mLayerView.getiPop();
         mLayerView.onShow();
     }
 
@@ -182,4 +185,11 @@ public class WebviewActivity extends AppCompatActivity {
 //    }
 
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(webView!=null){
+            webView.destroy();
+        }
+    }
 }

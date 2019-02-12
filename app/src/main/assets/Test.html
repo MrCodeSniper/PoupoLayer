@@ -21,7 +21,7 @@
 <body>
 <div class="jump" onclick="routeService()">调用原生路由服务发送命令</div>
 <div class="jump" onclick="jsprompt()">JSPrompt发送命令</div>
-<div class="jump" onclick="openTb()">Post请求发送命令</div>
+<div class="jump" onclick="doPost()">Post请求发送命令</div>
 <div class="jump" onclick="prodetail()">无视命令来源执行具体服务</div>
 </body>
 <script type="text/javascript" src="js/jquery.min.js" ></script>
@@ -33,10 +33,15 @@
         poplayer.route("xxx");
     }
 
+     //会卡住 webview无响应
     function jsprompt(){
-       
+        prompt("Please enter your name");
     }
 
+
+    function doPost(){
+       __HRZCJSBridgeObject._doSend("xxx");
+    }
 
     // 商品详情
     function prodetail() {
