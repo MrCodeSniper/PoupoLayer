@@ -45,7 +45,7 @@
  GlobalMessageObjectQueue = [];
 
   if (HRZSystemConfig.currentPlatform !== 'iPhone') {
-       poplayer.route(messages);
+
   }
 
  return messages;

@@ -6,6 +6,7 @@ package com.github.codesniper.poplayer.webview.client;
 
 
 import android.annotation.TargetApi;
+import android.net.Uri;
 import android.net.http.SslError;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -25,7 +26,12 @@ import static com.github.codesniper.poplayer.config.LayerConfig.POP_TAG;
 
 public class PopWebViewClient extends WebViewClient{
 
+    private String scheme="router";
+
+
     private HybirdManager mHybirdImpl;
+
+
 
     public void setListener(HybirdManager listener) {
         this.mHybirdImpl = listener;
@@ -45,7 +51,8 @@ public class PopWebViewClient extends WebViewClient{
     @Override
     public WebResourceResponse shouldInterceptRequest(final WebView webView, String url) {
         //运行在子线程
-        Log.d(POP_TAG,url);
+        Log.d(POP_TAG,"接收的url是:"+url);
+        //hrzapi.invoke("printService",{'name':'123','param1':'123'})
 
         if(url.contains("__HRZ_QUEUE_HAS_MESSAGE_V1")){
             return null;
@@ -87,6 +94,21 @@ public class PopWebViewClient extends WebViewClient{
 
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
+        if(!TextUtils.isEmpty(scheme)){
+            Uri uri= Uri.parse(url);
+            Log.e("poplayer",uri.getScheme());
+            if(TextUtils.equals(scheme,uri.getScheme())){
+                if (mHybirdImpl != null) {
+                    mHybirdImpl.invokeAppServices(url);
+                    return true;
+                }
+            }
+        }
         return super.shouldOverrideUrlLoading(view, url);
+    }
+
+    @Override
+    public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+        return super.shouldOverrideUrlLoading(view, request);
     }
 }

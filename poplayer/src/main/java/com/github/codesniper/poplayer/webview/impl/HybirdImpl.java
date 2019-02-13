@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
 import android.webkit.WebView;
+import android.widget.Toast;
 
 
 import com.github.codesniper.poplayer.custom.PopWebView;
@@ -30,10 +31,13 @@ import static com.github.codesniper.poplayer.config.LayerConfig.POP_TAG;
 
 public class HybirdImpl implements HybirdManager {
 
+    private Context mContext;
+
 
     @Override
     public void injectJsBridge(WebView webView,String JsName) {
         webView.loadUrl("javascript:" + PopUtils.getJsCode(webView.getContext(),JsName));
+        mContext=webView.getContext();
         Log.d(POP_TAG,"注入JSBrige成功");
     }
 
@@ -51,11 +55,15 @@ public class HybirdImpl implements HybirdManager {
         //解析
         //hrzapi.invoke("printService",{'name':'123','param1':'123'});
 
-        Log.d(POP_TAG,"接收到指令"+instruction);
+
 
         if(TextUtils.isEmpty(instruction)){
             return;
         }
+
+        Log.d(POP_TAG,"接收到指令"+instruction);
+
+        Toast.makeText(mContext,"指令:"+instruction,Toast.LENGTH_SHORT).show();
 
 
         try{
