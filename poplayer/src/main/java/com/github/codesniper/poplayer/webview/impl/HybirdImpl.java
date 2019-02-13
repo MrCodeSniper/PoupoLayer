@@ -1,6 +1,7 @@
 package com.github.codesniper.poplayer.webview.impl;
 
 import android.content.Context;
+import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
 import android.webkit.WebView;
@@ -15,6 +16,7 @@ import com.github.codesniper.poplayer.webview.service.PopWebViewService;
 import org.json.JSONObject;
 
 import java.lang.reflect.Method;
+import java.net.URI;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -42,6 +44,9 @@ public class HybirdImpl implements HybirdManager {
     @Override
     public void invokeAppServices(String instruction) {
 
+        //如果格式为路由形式
+        Uri uri=Uri.parse(instruction);
+
         //{"invokeId":"name_2_1549953808581","methodName":"name","methodParams":"123"}
         //解析
         //hrzapi.invoke("printService",{'name':'123','param1':'123'});
@@ -51,6 +56,7 @@ public class HybirdImpl implements HybirdManager {
         if(TextUtils.isEmpty(instruction)){
             return;
         }
+
 
         try{
             PopWebViewService popWebViewService=null;
