@@ -25,6 +25,14 @@
         android:text="显示透明webview弹窗1(Normal)"
         />
 
+
+    <Button
+        android:onClick="showTimePop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="显示透明webview弹窗4(限定次数)"
+        />
+
     <Button
         android:onClick="showDealyPop"
         android:layout_width="wrap_content"
@@ -39,19 +47,14 @@
         android:text="显示透明webview弹窗3(限定活动时间)"
         />
 
-    <Button
-        android:onClick="showTimePop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="显示透明webview弹窗4(限定次数)"
-        />
+
 
 
     <Button
         android:onClick="showPriorityPop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="将3个弹窗根据优先级纳入管理"
+        android:text="将2个弹窗根据优先级纳入管理"
         />
 
 

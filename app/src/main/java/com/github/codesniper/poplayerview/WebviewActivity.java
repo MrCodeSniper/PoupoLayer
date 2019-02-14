@@ -7,9 +7,11 @@ import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.github.codesniper.poplayer.PopLayerView;
 import com.github.codesniper.poplayer.config.LayerConfig;
+import com.github.codesniper.poplayer.custom.PopCallback;
 import com.github.codesniper.poplayer.custom.PopWebView;
 import com.github.codesniper.poplayer.pop.PopManager;
 import com.github.codesniper.poplayer.pop.Popi;
@@ -19,9 +21,9 @@ import com.github.codesniper.poplayer.strategy.concreate.WebViewLayerStrategyImp
 import static com.github.codesniper.poplayer.config.LayerConfig.COUNTDOWN_CANCEL;
 import static com.github.codesniper.poplayer.config.LayerConfig.TRIGGER_CANCEL;
 
-/**
- * 还有bug
- */
+
+
+
 public class WebviewActivity extends AppCompatActivity {
 
     //我需要加载自己的url 满足
@@ -30,17 +32,41 @@ public class WebviewActivity extends AppCompatActivity {
     //我可以自定义配置webview 满足
     //可不可以自定义X5webview
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_webview_subject);
+        PopManager.getInstance(this).setPopCallback(new PopCallback() {
+            @Override
+            public void onPopExisted(int queueSize) {
+
+            }
+
+            @Override
+            public void onPopOutOfDate() {
+                Toast.makeText(WebviewActivity.this,"弹窗超出限定时间显示范围", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onPopShowMaxCount() {
+                Toast.makeText(WebviewActivity.this,"弹窗显示已经达到最大次数", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onPopShowSuccess() {
+
+            }
+
+            @Override
+            public void onPopDelayDismiss() {
+
+            }
+        });
     }
 
 
     /**
      * 普通弹窗无需纳入管理
-     *
      * @param view
      */
     public void showNormalPop(View view) {
@@ -76,13 +102,12 @@ public class WebviewActivity extends AppCompatActivity {
      * @param view
      */
     public void showEventPop(View view) {
-        PopLayerView mLayerView = new PopLayerView(this,LayerConfig.dialog4);
+        PopLayerView mLayerView = new PopLayerView(this,LayerConfig.redPocketScheme);
 
         Popi eventPop = new Popi.Builder()
                 .setmPopId(2)
                 .setmPriority(4)
-                .setmCancelType(COUNTDOWN_CANCEL)
-                .setMaxShowTimeLength(5)
+                .setmCancelType(TRIGGER_CANCEL)
                 .setmBeginDate(154885802L)//开始时间 2019-01-30 22:20:28
                 .setmEndDate(1559666666)//结束时间 2019-01-31 22:20:28
                 .setLayerView(mLayerView)
@@ -106,7 +131,6 @@ public class WebviewActivity extends AppCompatActivity {
                 .setmPopId(3)
                 .setmPriority(1)
                 .setmCancelType(TRIGGER_CANCEL)
-                .setMaxShowTimeLength(5)
                 .setMaxShowCount(5)
                 .setLayerView(mLayerView)
                 .build();
@@ -118,7 +142,7 @@ public class WebviewActivity extends AppCompatActivity {
 
     public void showPriorityPop(View view){
 
-
+        //黑色弹窗 优先级为4 延迟5S取消
         PopLayerView mLayerView = new PopLayerView(this,LayerConfig.dialog6);
 
         Popi eventPop = new Popi.Builder()
@@ -129,25 +153,21 @@ public class WebviewActivity extends AppCompatActivity {
                 .setLayerView(mLayerView)
                 .build();
 
+        PopManager.getInstance(this).pushToQueue(eventPop);
 
-
+        //黄色标签弹窗 优先级为1
         PopLayerView mLayerView1 = new PopLayerView(this,LayerConfig.dialog5);
 
         Popi timePop = new Popi.Builder()
                 .setmPopId(3)
                 .setmPriority(1)
                 .setmCancelType(TRIGGER_CANCEL)
-                .setMaxShowTimeLength(5)
-                .setMaxShowCount(5)
                 .setLayerView(mLayerView1)
                 .build();
 
 
-
-
-
         PopManager.getInstance(this).pushToQueue(timePop);
-        PopManager.getInstance(this).pushToQueue(eventPop);
+
         PopManager.getInstance(this).showNextPopi();
     }
 

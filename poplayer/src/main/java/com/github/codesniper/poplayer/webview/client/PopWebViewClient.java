@@ -64,7 +64,7 @@ public class PopWebViewClient extends WebViewClient{
                 @Override
                 public void run() {
                     //必须运行在主线程
-                    webView.evaluateJavascript("javascript:__HRZCJSBridgeObject.drainMessageQueue()", new ValueCallback<String>() {
+                    webView.evaluateJavascript("javascript:__HRZCJSBridgeObject.drainMessageQueue();", new ValueCallback<String>() {
                         @Override
                         public void onReceiveValue(String value) {
                             Log.d(POP_TAG,"onReceiveValue:"+value);

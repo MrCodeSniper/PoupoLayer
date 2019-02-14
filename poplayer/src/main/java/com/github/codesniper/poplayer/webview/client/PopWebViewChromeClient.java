@@ -47,6 +47,8 @@ public class PopWebViewChromeClient extends WebChromeClient {
             if(mHybirdImpl!=null){
                 mHybirdImpl.invokeAppServices(postJson);
             }
+            //防止prompt阻塞交互
+            result.confirm();
             return true;
         }
         return super.onJsPrompt(view, url, message, defaultValue, result);
