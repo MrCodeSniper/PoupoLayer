@@ -23,9 +23,10 @@ implementation 'com.github.MrCodeSniper:PopLayer:2.0.0'
 ### 1.根据策略创建对应的弹窗view
 
 ```java
-PopLayerView mLayerView=new PopLayerView(this);
-//第一个参数为dialog的布局 第二个参数为dialog的主题
-mLayerView.setiLayerStrategy(new DialogLayerStrategyImpl(R.layout.common_dialog_upgrade_app,R.style.FullTransDialog));
+//Dialog形式
+PopLayerView  mLayerView = new PopLayerView(this,R.layout.common_dialog_upgrade_app);
+//透明Webview形式
+PopLayerView mLayerView = new PopLayerView(this,LayerConfig.redPocketScheme);
 ```
 
 ### 2.开始装配弹窗配置
@@ -39,7 +40,7 @@ Popi mUpgradePopi1 = new Popi.Builder()
                 .setMaxShowCount(5)//最大显示次数
                 .setmBeginDate(1548858028)//开始时间 2019-01-30 22:20:28
                 .setmEndDate(1548944428)//结束时间 2019-01-31 22:20:28
-                .setmPopLayerView(mLayerView1)//弹窗View
+                .setLayerView(mLayerView)//弹窗View
                 .build();
 ```
 
