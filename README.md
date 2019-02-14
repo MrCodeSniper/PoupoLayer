@@ -55,6 +55,8 @@ PopManager.getInstance().showNextPopi();
 
 ![avatar](https://user-gold-cdn.xitu.io/2019/1/31/1689fff4be066237?imageslim)
 
+![](https://user-gold-cdn.xitu.io/2019/2/14/168e9ff41aa39e6d?w=404&h=720&f=gif&s=720636)
+
 ### 未来的计划
 
 逐步统一 其他类型的弹窗 希望能提供给大家一个较为全面的应对业务需求的弹窗管理框架
