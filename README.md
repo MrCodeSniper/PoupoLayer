@@ -53,8 +53,7 @@ PopManager.getInstance().showNextPopi();
 ```
 ### 效果预览
 
-
-![avatar](https://user-gold-cdn.xitu.io/2019/2/14/168e9ff41aa39e6d?w=404&h=720&f=gif&s=720636)
+![avatar](https://user-gold-cdn.xitu.io/2019/1/31/1689fff4be066237?imageslim)
 
 ### 未来的计划
 
@@ -64,8 +63,6 @@ PopManager.getInstance().showNextPopi();
 
 
 #### V1方案
-
-
 
 版本号|LOG|进度更新
 --|:--:|--:
