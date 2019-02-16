@@ -35,7 +35,7 @@ public class PopManager implements PopDismissListener {
     }
 
     //每添加完一个元素都会进行堆排序对队列进行优先级调整  先入先出
-    private static PriorityQueue<Popi> queue = new PriorityQueue();
+    private  PriorityQueue<Popi> queue;
 
     private Handler handler = new Handler() {
         @Override
@@ -46,6 +46,7 @@ public class PopManager implements PopDismissListener {
     };
 
     private static PopManager mInstance;
+
 
     public static PopManager getInstance(Context context) {
         if (mInstance == null) {
@@ -60,6 +61,9 @@ public class PopManager implements PopDismissListener {
 
     private PopManager(Context context) {
         mContext = context;
+        if(queue==null){
+            queue=new PriorityQueue<>();
+        }
     }
 
     private Popi mPopi;
