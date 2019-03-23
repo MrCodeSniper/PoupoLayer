@@ -52,6 +52,36 @@ PopManager.getInstance().pushToQueue(mUpgradePopi);
 //开始显示弹窗
 PopManager.getInstance().showNextPopi();
 ```
+
+### 4.加入涉及网络回调的任务管理
+
+```java
+
+//添加任务 
+Task taskUpdate=new Task();
+taskUpdate.setmPriority(1);
+taskUpdate.setmTaskId(1);
+
+//任务管理器添加任务及对应的弹窗
+TaskManager.getInstance(this)
+           .pushToQueue(taskUpdate,mUpgradePopi)
+           .pushToQueue(taskDownload,downloadPop)
+           .pushToQueue(taskNotice,noticePopi);
+           
+//显示逻辑
+TaskManager.getInstance(this).onTaskGoOn(taskUpdate);//回调成功
+TaskManager.getInstance(this).onTaskInterupt(taskUpdate);//回调失败
+//或
+//如果您使用的是Rxjava实现回调您可以继承框架中自带回调逻辑的PopRxSubscriber
+public class MySubscriber extends PopRxSubscriber {
+
+    public MySubscriber(Context mContext, Task task) {
+        super(mContext, task);
+    }
+}
+
+```
+
 ### 效果预览
 
 ![avatar](https://user-gold-cdn.xitu.io/2019/1/31/1689fff4be066237?imageslim)
@@ -78,7 +108,15 @@ V1.0.3|优化了弹窗的使用更加方便快捷|框架使用优化
 --|:--:|--:
 V2.0.0|正式加入透明Webview弹窗策略扩展|透明Webview策略扩展完成
 
+#### V3方案
 
+版本号|LOG|进度更新
+--|:--:|--:
+V3.0.0|引入流程任务管理模块|解决涉及网络的业务逻辑弹窗
+
+### 关于项目
+
+如果您对本项目感兴趣您可以去掘金观看我的文章 给予一点小小的支持
 
 
 ### 作者介绍
