@@ -122,7 +122,7 @@ V3.0.0|引入流程任务管理模块|解决涉及网络的业务逻辑弹窗
 
 [Android通用业务弹窗管理方案PopLayerV2](https://juejin.im/post/5c56acb851882562eb50d564)
 
-
+[Android通用业务弹窗管理方案PopLayerV3- 业务流程控制](https://juejin.im/post/5c961f585188252da05f4b08)
 ### 作者介绍
 
 Hello 我叫lalala,如果您喜欢这个项目 请给个star 能follow我那真是太好了！！
