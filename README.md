@@ -27,6 +27,9 @@ implementation 'com.github.MrCodeSniper:PopLayer:3.0.0'
 PopLayerView  mLayerView = new PopLayerView(this,R.layout.common_dialog_upgrade_app);
 //透明Webview形式
 PopLayerView mLayerView = new PopLayerView(this,LayerConfig.redPocketScheme);
+//取得对应的弹窗实体
+Dialog mView=mLayerView.getiPop().getView(Dialog.class);
+WebView mView=mLayerView.getiPop().getView(WebView.class);
 ```
 
 ### 2.开始装配弹窗配置
