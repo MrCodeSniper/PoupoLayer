@@ -74,12 +74,10 @@ TaskManager.getInstance(this).onTaskInterupt(taskUpdate);//回调失败
 //或
 //如果您使用的是Rxjava实现回调您可以继承框架中自带回调逻辑的PopRxSubscriber
 public class MySubscriber extends PopRxSubscriber {
-
     public MySubscriber(Context mContext, Task task) {
         super(mContext, task);
     }
 }
-
 ```
 
 ### 效果预览
