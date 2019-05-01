@@ -119,9 +119,9 @@ V3.0.0|引入流程任务管理模块|解决涉及网络的业务逻辑弹窗
 
 如果您对本项目感兴趣您可以去掘金观看我的文章 给予一点小小的支持
 
-[Android通用业务弹窗管理方案PopLayerV1](https://juejin.im/post/5c51da126fb9a04a006f6da0)
+[Android通用业务弹窗管理方案PopLayerV1-Dialog方案](https://juejin.im/post/5c51da126fb9a04a006f6da0)
 
-[Android通用业务弹窗管理方案PopLayerV2](https://juejin.im/post/5c56acb851882562eb50d564)
+[Android通用业务弹窗管理方案PopLayerV2-WebView方案](https://juejin.im/post/5c56acb851882562eb50d564)
 
 [Android通用业务弹窗管理方案PopLayerV3- 业务流程控制](https://juejin.im/post/5c961f585188252da05f4b08)
 ### 作者介绍
