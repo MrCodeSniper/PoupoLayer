@@ -1,3 +1,6 @@
+![Logo](https://upload-images.jianshu.io/upload_images/2634235-432fb23ebcdb3086.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
 # PopLayer
 一个通用的Android端弹窗管理框架,支持带网络请求的业务流程管理,内部维护弹窗优先级队列 具备弹窗管理扩展功能 整合Dialog,PoupoWindow,悬浮Widget,透明Webview,Toast,SnackBar,无需再为繁琐的业务弹窗逻辑所困扰
 
