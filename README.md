@@ -26,44 +26,47 @@ implementation 'com.github.MrCodeSniper:PopLayer:3.0.0'
 ### 1.根据策略创建对应的弹窗view
 
 ```java
-//Dialog形式
+//Dialog布局形式
 PopLayerView  mLayerView = new PopLayerView(this,R.layout.common_dialog_upgrade_app);
+
+//自定义Dialog形式
+NoticePopDialog hrzNoticePopDialog = new NoticePopDialog(this);
+PopLayerView mLayerView = new PopLayerView(this,hrzNoticePopDialog);
+
 //透明Webview形式
 PopLayerView mLayerView = new PopLayerView(this,LayerConfig.redPocketScheme);
+
 //取得对应的弹窗实体
-Dialog mView=mLayerView.getiPop().getView(Dialog.class);
-WebView mView=mLayerView.getiPop().getView(WebView.class);
+PopLayerView<Dialog> mLayerView = new PopLayerView(this,R.layout.common_popview_frame2);
+Dialog mView=mLayerView.getView().getPoupo();
+
+PopLayerView<WebView> mLayerView = new PopLayerView(this,LayerConfig.redPocketScheme);
+WebView mView=mLayerView.getView().getPoupo();
 ```
 
-### 2.开始装配弹窗配置
+### 2.配置参数并直接使用
 
 ```java
-Popi mUpgradePopi1 = new Popi.Builder()
+  Popi.getBuilder()
                 .setmPopId(4)//弹窗的唯一标识 当id发生改变 视为新的弹窗
                 .setmPriority(2)//优先级这里不具体划分对应的范围 值越小优先级越高
                 .setmCancelType(TRIGGER_CANCEL)//弹窗消失的类型分为 TRIGGER_CANCEL(触摸消失) COUNTDOWN_CANCEL (延时消失)
                 .setMaxShowTimeLength(5)//最长显示时间(S)
                 .setMaxShowCount(5)//最大显示次数
-                .setmBeginDate(1548858028)//开始时间 2019-01-30 22:20:28
-                .setmEndDate(1548944428)//结束时间 2019-01-31 22:20:28
+                .setmBeginDate(1548858028)//秒级时间撮开始时间 2019-01-30 22:20:28
+                .setmEndDate(1548944428)//秒级时间撮结束时间 2019-01-31 22:20:28
                 .setLayerView(mLayerView)//弹窗View
-                .build();
+                .build()
+                .pushToQueue() //纳入弹窗管理
+                .show();//开始显示弹窗
 ```
 
-### 3.纳入弹窗管理并显示
+
+
+### Addition:当需要统一异步回调请加入以下代码
 
 ```java
-//纳入弹窗管理
-PopManager.getInstance().pushToQueue(mUpgradePopi);
-//开始显示弹窗
-PopManager.getInstance().showNextPopi();
-```
-
-### 4.加入涉及网络回调的任务管理
-
-```java
-
-//添加任务 
+//添加任务
 Task taskUpdate=new Task();
 taskUpdate.setmPriority(1);
 taskUpdate.setmTaskId(1);
@@ -73,10 +76,11 @@ TaskManager.getInstance(this)
            .pushToQueue(taskUpdate,mUpgradePopi)
            .pushToQueue(taskDownload,downloadPop)
            .pushToQueue(taskNotice,noticePopi);
-           
+
 //显示逻辑
 TaskManager.getInstance(this).onTaskGoOn(taskUpdate);//回调成功
 TaskManager.getInstance(this).onTaskInterupt(taskUpdate);//回调失败
+
 //或
 //如果您使用的是Rxjava实现回调您可以继承框架中自带回调逻辑的PopRxSubscriber
 public class MySubscriber extends PopRxSubscriber {
@@ -86,15 +90,15 @@ public class MySubscriber extends PopRxSubscriber {
 }
 ```
 
-### 效果预览
+## 效果预览
 
-![avatar](https://user-gold-cdn.xitu.io/2019/1/31/1689fff4be066237?imageslim)
+![Dialog策略效果.gif](https://upload-images.jianshu.io/upload_images/2634235-a3543b9ab3815427.gif?imageMogr2/auto-orient/strip)
 
-### 未来的计划
+## 下一步的计划
 
-逐步统一 其他类型的弹窗 希望能提供给大家一个较为全面的应对业务需求的弹窗管理框架
+逐步统一 其他类型的弹窗 提供给一个较为全面的应对业务需求的弹窗管理框架
 
-### 版本记录
+## 版本记录
 
 
 #### V1方案
@@ -118,7 +122,9 @@ V2.0.0|正式加入透明Webview弹窗策略扩展|透明Webview策略扩展完�
 --|:--:|--:
 V3.0.0|引入流程任务管理模块|解决涉及网络的业务逻辑弹窗
 
-### 关于项目
+## 关于项目
+
+目前该项目已经稳定运行在本人的线上项目中,当需要扩展或者修改的地方会及时发版更新,有问题也可以直接提ISSUE给我 看到马上回复
 
 如果您对本项目感兴趣您可以去掘金观看我的文章 给予一点小小的支持
 
@@ -127,11 +133,12 @@ V3.0.0|引入流程任务管理模块|解决涉及网络的业务逻辑弹窗
 [Android通用业务弹窗管理方案PopLayerV2-WebView方案](https://juejin.im/post/5c56acb851882562eb50d564)
 
 [Android通用业务弹窗管理方案PopLayerV3- 业务流程控制](https://juejin.im/post/5c961f585188252da05f4b08)
-### 作者介绍
 
-Hello 我叫**CodeSniper**,如果您喜欢这个项目 请给个star 能follow我那真是太好了！！
+## 作者介绍
 
-### License
+Hello 我叫**CodeSniper**,如果您喜欢这个项目 请给个**Star**这对我真的非常重要!!!
+
+## License
 
 ```
 Copyright (c) 2019 ChenHong

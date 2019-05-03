@@ -1,4 +1,4 @@
-package com.github.codesniper.poplayerview;
+package com.github.codesniper.poplayerview.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +13,7 @@ import com.github.codesniper.poplayer.pop.Popi;
 import com.github.codesniper.poplayer.task.Task;
 import com.github.codesniper.poplayer.task.TaskManagerV1;
 import com.github.codesniper.poplayer.task.TaskManager;
+import com.github.codesniper.poplayerview.R;
 
 import static com.github.codesniper.poplayer.config.LayerConfig.COUNTDOWN_CANCEL;
 import static com.github.codesniper.poplayer.config.LayerConfig.TRIGGER_CANCEL;
@@ -28,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         test();
         //两个接口同时请求
-        request_update();
-        request_notice();
+//        request_update();
+//        request_notice();
         //请求1先于2完成 且都是成功的情况
         //请求1先于2完成 且请求1 失败 请求2成功
 
@@ -38,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         //请求2先于请求1完成 且都是成功的情况
-        onUpdateSuccess(false);
-        onNoticeSuccess(true);
+//        onUpdateSuccess(false);
+//        onNoticeSuccess(true);
     }
 
 

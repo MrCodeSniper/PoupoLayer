@@ -41,7 +41,7 @@ public class PopManager implements PopDismissListener {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            mPopi.getContent().dissmissLayer(mContext);
+            mPopi.getContent().dissmissLayer();
         }
     };
 
@@ -139,7 +139,7 @@ public class PopManager implements PopDismissListener {
             }
 
             //显示弹窗
-            mPopi.getContent().showLayer(mContext);
+            mPopi.getContent().showLayer();
 
             if(popCallback!=null) popCallback.onPopShowSuccess();
 
@@ -165,8 +165,8 @@ public class PopManager implements PopDismissListener {
     public void clear() {
         queue.clear();
         if (mPopi != null) {
-            mPopi.getContent().dissmissLayer(mContext);
-            mPopi.getContent().recycleLayer(mContext);
+            mPopi.getContent().dissmissLayer();
+            mPopi.getContent().recycleLayer();
         }
     }
 

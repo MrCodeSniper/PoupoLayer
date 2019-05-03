@@ -105,7 +105,7 @@ public class TaskManagerV1 implements PopDismissListener {
             //显示弹窗
             if(popi!=null){
                 pushToReserve(popi);
-                popi.getContent().showLayer(mContext);
+                popi.getContent().showLayer();
             }
         }else {  //不是优先级最高的 进入保留队列
             Log.d("hrz","当前task不是优先级最高的");
@@ -139,7 +139,7 @@ public class TaskManagerV1 implements PopDismissListener {
             reserveQueue.poll(); //出队
             if(reserveQueue.size()>0){
                 Popi mPopi = reserveQueue.element();
-                mPopi.getContent().showLayer(mContext); //显示
+                mPopi.getContent().showLayer(); //显示
             }
         }
     }

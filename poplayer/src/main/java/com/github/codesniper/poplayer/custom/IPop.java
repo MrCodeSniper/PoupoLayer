@@ -1,10 +1,13 @@
 package com.github.codesniper.poplayer.custom;
 
 /**
- * @Author：陈鸿 on 2019\1\30 0030 22:48
- * 邮箱：15168264355@163.com
+   统一
  */
-public interface IPop {
+public  interface IPop{
+
    //整合基础原生组件
     void onPopTouch(int touchStatus);
+
+    //根据传入的class获取View
+    <T> T getView(Class<T> service);
 }

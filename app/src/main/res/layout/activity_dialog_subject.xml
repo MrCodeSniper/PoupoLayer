@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:gravity="center_horizontal"
     android:layout_height="match_parent"
-    tools:context=".DialogActivity">
+    tools:context=".activity.DialogActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -19,10 +19,17 @@
 
 
     <Button
-        android:onClick="showNormalDialog"
+        android:onClick="showNormalDialog1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="显示正常弹窗"
+        android:text="显示正常弹窗ByCustomDialog"
+        />
+
+    <Button
+        android:onClick="showNormalDialog2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="显示正常弹窗ByLayouTID"
         />
 
     <Button
@@ -37,9 +44,15 @@
         android:onClick="showDateDialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="限定时间类弹窗"
+        android:text="在限定时间范围弹窗"
         />
 
+    <Button
+        android:onClick="showDateDialog2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="超出时间范围弹窗"
+        />
 
     <Button
         android:onClick="showTimeDialog"

@@ -120,6 +120,19 @@ public class Popi implements Comparable<Popi> {
         return priority;
     }
 
+    public Popi pushToQueue() {
+        PopManager.getInstance(content.getLayerContext()).pushToQueue(this);
+        return this;
+    }
+
+    public void show(){
+        PopManager.getInstance(content.getLayerContext()).showNextPopi();
+    }
+
+    public static Builder getBuilder(){
+        return new Builder();
+    }
+
 
     public static class Builder {
 
@@ -140,7 +153,7 @@ public class Popi implements Comparable<Popi> {
         }
 
         public Builder setLayerView(PopLayerView mPopLayerView) {
-            this.mPopLayerView = mPopLayerView.getiLayerStrategy();
+            this.mPopLayerView = mPopLayerView.getConcreateStrategy();
             return this;
         }
 
@@ -188,9 +201,7 @@ public class Popi implements Comparable<Popi> {
             return new Popi(this);
         }
 
-        public void pushToQueue() {
-            PopManager.getInstance(mPopLayerView.getLayerContext()).pushToQueue(build());
-        }
+
 
     }
 

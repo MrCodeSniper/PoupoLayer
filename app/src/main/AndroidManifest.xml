@@ -41,11 +41,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".DialogActivity"/>
+        <activity android:name=".activity.DialogActivity"/>
 
-        <activity android:name=".WebviewActivity"/>
+        <activity android:name=".activity.WebviewActivity"/>
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.MainActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

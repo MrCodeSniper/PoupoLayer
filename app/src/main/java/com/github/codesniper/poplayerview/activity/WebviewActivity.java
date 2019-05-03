@@ -1,12 +1,8 @@
-package com.github.codesniper.poplayerview;
+package com.github.codesniper.poplayerview.activity;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
-import android.webkit.WebView;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.github.codesniper.poplayer.PopLayerView;
@@ -15,8 +11,7 @@ import com.github.codesniper.poplayer.custom.PopCallback;
 import com.github.codesniper.poplayer.custom.PopWebView;
 import com.github.codesniper.poplayer.pop.PopManager;
 import com.github.codesniper.poplayer.pop.Popi;
-import com.github.codesniper.poplayer.strategy.concreate.DialogLayerStrategyImpl;
-import com.github.codesniper.poplayer.strategy.concreate.WebViewLayerStrategyImpl;
+import com.github.codesniper.poplayerview.R;
 
 import static com.github.codesniper.poplayer.config.LayerConfig.COUNTDOWN_CANCEL;
 import static com.github.codesniper.poplayer.config.LayerConfig.TRIGGER_CANCEL;
@@ -71,7 +66,7 @@ public class WebviewActivity extends AppCompatActivity {
      */
     public void showNormalPop(View view) {
         PopLayerView mLayerView = new PopLayerView(this,LayerConfig.dialog5);
-        mLayerView.onShow();
+        mLayerView.show();
     }
 
 
@@ -178,7 +173,7 @@ public class WebviewActivity extends AppCompatActivity {
      */
     public void showRpRain(View view) {
         PopLayerView mLayerView = new PopLayerView(this,LayerConfig.redPocketScheme);
-        mLayerView.onShow();
+        mLayerView.show();
     }
 
     private PopWebView webView;
@@ -189,8 +184,8 @@ public class WebviewActivity extends AppCompatActivity {
      */
     public void showJS(View view) {
         PopLayerView mLayerView = new PopLayerView(this,LayerConfig.jsTest);
-        webView= (PopWebView) mLayerView.getiPop();
-        mLayerView.onShow();
+//        webView= (PopWebView) mLayerView.getiPop();
+        mLayerView.show();
     }
 
 //

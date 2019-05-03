@@ -1,105 +1,178 @@
 package com.github.codesniper.poplayer;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.view.View;
+import android.webkit.WebView;
 
 import com.github.codesniper.poplayer.config.PopDismissListener;
 import com.github.codesniper.poplayer.custom.IPop;
+import com.github.codesniper.poplayer.custom.newPop.IWindow;
+import com.github.codesniper.poplayer.custom.newPop.IWindowEvent;
 import com.github.codesniper.poplayer.strategy.LayerLifecycle;
 import com.github.codesniper.poplayer.strategy.concreate.DialogLayerStrategyImpl;
 import com.github.codesniper.poplayer.strategy.concreate.WebViewLayerStrategyImpl;
+import com.github.codesniper.poplayer.unused.ILayerStrategy;
 
 
 /**
  *  整合app内弹窗为一个概念-Poplayerview
  *  包含： 1.全屏透明的webview 2.dialog 3.poupowindow 4.widget插件 5.toast 6.snackbar 7.可扩展自定义的弹窗view
  */
-public class PopLayerView{
+public   class  PopLayerView <T> implements IWindowEvent { //提供给外界的入口
 
     private Context mContext;
 
-    //当前弹窗是否显示
-    private boolean isShow=false;
 
-    //抽象弹窗 依赖抽象
-    private LayerLifecycle iLayerStrategy;
+    //抽象弹窗策略
+    private LayerLifecycle starategy;
 
-    //获取实体对象
-    public IPop getiPop() {
-        if(iLayerStrategy!=null){
-            return iLayerStrategy.getLayerConcreteView();
-        }
-        return null;
+
+    /**------------------根据构造方法决定对应策略--------------------**/
+
+    private int mLayout;
+    private int mTheme;
+    private IWindow<T> iWindow;
+    private String loadUrl;
+
+
+
+    public static final int CUSTOM = 0;
+    public static final int CUSTOM_LAYOUT_DIALOG = 2;
+    public static final int CUSTOM_LAYOUT_THEME_DIALOG = 3;
+    public static final int CUSTOM_WEBVIEW = 4;
+
+    private static int mType=CUSTOM;
+
+
+    //构造 for 自定义Dialog
+    public PopLayerView(Context context, IWindow<T> iWindow){
+        this.iWindow=iWindow;
+        this.mContext=context;
+        mType=CUSTOM;
+        initView();
     }
 
-
-
-    public PopLayerView(Context context, LayerLifecycle iLayerStrategy) {
-        this.mContext = context;
-        this.iLayerStrategy = iLayerStrategy;
-        onCreate();
-        onInit();
-    }
-
-
-    //方便的构造方法 for Dialog
+    //构造 for Dialog带布局
     public PopLayerView(Context context,int dialogLayout){
-        this(context,new DialogLayerStrategyImpl(dialogLayout,R.style.FullTransDialog));
+        this.mLayout=dialogLayout;
+        this.mContext=context;
+        mType=CUSTOM_LAYOUT_DIALOG;
+        initView();
     }
 
-    //方便的构造方法 for Webview
+    //构造 for Dialog带布局和主题
+    public PopLayerView(Context context,int dialogLayout,int themeId){
+        this.mLayout=dialogLayout;
+        this.mTheme=themeId;
+        this.mContext=context;
+        mType=CUSTOM_LAYOUT_THEME_DIALOG;
+        initView();
+    }
+
+    private void initView(){
+        switch (mType){
+            case CUSTOM:
+                if(iWindow.getPoupo() instanceof Dialog){
+                    this.starategy=new DialogLayerStrategyImpl(mContext,iWindow);
+                }else if(iWindow.getPoupo() instanceof WebView){
+                    //TODO
+                }
+                break;
+            case CUSTOM_LAYOUT_DIALOG:
+                this.starategy=new DialogLayerStrategyImpl(mContext,mLayout);
+                break;
+            case CUSTOM_LAYOUT_THEME_DIALOG:
+                this.starategy=new DialogLayerStrategyImpl(mContext,mLayout,mTheme);
+                break;
+            case CUSTOM_WEBVIEW:
+                this.starategy=new WebViewLayerStrategyImpl(mContext,loadUrl);
+                break;
+        }
+        if(starategy!=null){
+            starategy.createLayerView();
+            starategy.initLayerView();
+        }
+    }
+
+
+
+
+   /**--------------------------------------**/
+
+
+    //构造 for 默认Webview
     public PopLayerView(Context context,String loadUrl){
-        this(context,new WebViewLayerStrategyImpl(loadUrl));
+        this.mContext=context;
+        this.loadUrl=loadUrl;
+        mType=CUSTOM_WEBVIEW;
+        initView();
     }
 
+
+
+
+
+    /**------------------交给对应的策略执行--------------------**/
+
+    public void show(){
+        if(starategy!=null){
+            starategy.showLayer();
+        }
+    }
+
+    public void dismiss(){
+        if(starategy!=null){
+            starategy.dissmissLayer();
+        }
+    }
+
+    public void recycle(){
+        if(starategy!=null){
+            starategy.recycleLayer();
+            mContext=null;
+        }
+    }
+
+    public boolean isShow() {
+        if(starategy!=null){
+            return starategy.isShowing();
+        }
+        return false;
+    }
 
     public Context getContext() {
         return mContext;
     }
 
-    private void onCreate(){
-        if(iLayerStrategy!=null){
-            iLayerStrategy.createLayerView(mContext);
+
+    public IWindow<T> getView(){
+        if(starategy!=null){
+            return starategy.getWindowView();
         }
+        return null;
     }
 
-    private void onInit(){
-        if(iLayerStrategy!=null){
-            iLayerStrategy.initLayerView(mContext);
+
+    public View findViewById(int id){
+        if(starategy!=null){
+            return starategy.getViewById(id);
         }
-    }
-
-    public void onShow(){
-        if(iLayerStrategy!=null){
-            iLayerStrategy.showLayer(mContext);
-            isShow=true;
-        }
-    }
-
-    public void onDismiss(){
-        if(iLayerStrategy!=null){
-            iLayerStrategy.dissmissLayer(mContext);
-            isShow=false;
-        }
-    }
-
-    public void onRecycle(){
-        if(iLayerStrategy!=null){
-            iLayerStrategy.recycleLayer(mContext);
-            mContext=null;
-        }
-    }
-
-    public LayerLifecycle getiLayerStrategy() {
-        return iLayerStrategy;
-    }
-
-    /**
-     * 判断弹窗是否显示
-     */
-    public boolean isShow() {
-        return isShow;
+        return null;
     }
 
 
+    @Override
+    public void onWindowShow() {
 
+    }
+
+    @Override
+    public void onWindowDismiss() {
+
+    }
+
+    public LayerLifecycle getConcreateStrategy(){
+        return starategy;
+    }
 }

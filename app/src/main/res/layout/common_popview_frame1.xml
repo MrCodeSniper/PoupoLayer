@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/transparent"
+    android:layout_height="200dp">
+
+
+        <ImageView
+            android:id="@+id/iv_annonce"
+            android:scaleType="centerCrop"
+            android:src="@drawable/mylogo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/round_corner_transparent_bg"
+            android:scaleType="center"
+            android:src="@drawable/icon_close_white_32px" />
+
+    </RelativeLayout>
+
+</LinearLayout>

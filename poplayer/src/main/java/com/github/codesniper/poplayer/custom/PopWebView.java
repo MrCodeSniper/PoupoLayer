@@ -121,4 +121,9 @@ public class PopWebView extends WebView implements IPop,View.OnTouchListener {
         mTouchType=touchStatus;
      //   Log.e("xxx","设置了触摸状态"+touchStatus);
     }
+
+    @Override
+    public <T> T getView(Class<T> service) {
+        return (T) this;
+    }
 }
