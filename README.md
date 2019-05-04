@@ -5,7 +5,7 @@
 一个通用的Android端弹窗管理框架,支持带网络请求的业务流程管理,内部维护弹窗优先级队列 具备弹窗管理扩展功能 整合Dialog,PoupoWindow,悬浮Widget,透明Webview,Toast,SnackBar,无需再为繁琐的业务弹窗逻辑所困扰
 
  <a href="http://www.apache.org/licenses/LICENSE-2.0">
-    <img src="http://img.shields.io/badge/PopLayer-v3.0.0-blue.svg?style=flat-square" alt="弹窗管理" />
+    <img src="http://img.shields.io/badge/PopLayer-v3.0.1-blue.svg?style=flat-square" alt="弹窗管理" />
   </a>
  
 ## 如何添加依赖
@@ -17,7 +17,7 @@
  maven { url 'https://www.jitpack.io' }
 
 //add this to your dependencies
-implementation 'com.github.MrCodeSniper:PopLayer:3.0.0'
+implementation 'com.github.MrCodeSniper:PopLayer:3.0.1'
 ```
 
 ## 具体如何使用
