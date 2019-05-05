@@ -42,6 +42,10 @@ Dialog mView=mLayerView.getView().getPoupo();
 
 PopLayerView<WebView> mLayerView = new PopLayerView(this,LayerConfig.redPocketScheme);
 WebView mView=mLayerView.getView().getPoupo();
+
+//想要拿到弹窗布局里的具体控件?就跟系统API一样简单!
+TextView xxxTV = (TextView) mLayerView.findViewById(R.id.tv);
+
 ```
 
 ### 2.配置参数并直接使用
