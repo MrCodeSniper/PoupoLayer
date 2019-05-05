@@ -25,7 +25,7 @@ public class Popi implements Comparable<Popi> {
     private PopType mType;
 
     //弹窗的唯一标识  ID不同的弹窗 视为不同的弹窗 throught the view shows the same
-    private int popId;
+    private long popId;
 
     //默认不进行 弹窗最大显示次数记录
     private int maxShowCount;
@@ -67,7 +67,7 @@ public class Popi implements Comparable<Popi> {
         }
     }
 
-    public int getPopId() {
+    public long getPopId() {
         return popId;
     }
 
@@ -139,7 +139,7 @@ public class Popi implements Comparable<Popi> {
         private LayerLifecycle mPopLayerView;
         private PopType mPopType;
         private int maxShowCount=Integer.MAX_VALUE - 1;
-        private int mPopId;
+        private long mPopId;
         private long mBeginDate=154883431L;
         private long mEndDate=15488343130L;
         private int mPriority;
@@ -167,7 +167,7 @@ public class Popi implements Comparable<Popi> {
             return this;
         }
 
-        public Builder setmPopId(int mPopId) {
+        public Builder setmPopId(long mPopId) {
             this.mPopId = mPopId;
             return this;
         }
