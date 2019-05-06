@@ -17,7 +17,7 @@
  maven { url 'https://www.jitpack.io' }
 
 //add this to your dependencies
-implementation 'com.github.MrCodeSniper:PopLayer:3.0.1'
+implementation 'com.github.MrCodeSniper:PopLayer:3.0.2'
 ```
 
 ## 具体如何使用
@@ -125,6 +125,7 @@ V2.0.0|正式加入透明Webview弹窗策略扩展|透明Webview策略扩展完�
 版本号|LOG|进度更新
 --|:--:|--:
 V3.0.0|引入流程任务管理模块|解决涉及网络的业务逻辑弹窗
+V3.0.0~V3.0.2|优化回调优化职责分离|全网最新最全DEMO
 
 ## 关于项目
 
