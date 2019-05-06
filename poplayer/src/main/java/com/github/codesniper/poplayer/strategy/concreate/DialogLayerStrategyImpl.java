@@ -68,9 +68,6 @@ public class  DialogLayerStrategyImpl implements LayerLifecycle {
         mDialog.getPoupo().setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialog) {
-                //弹窗隐藏时通知弹窗管理和任务管理器
-                PopManager.getInstance(mContext).onPopDimiss();
-                TaskManagerV1.getInstance(mContext).onPopDimiss();
                 if(windowEvent!=null) windowEvent.onWindowDismiss();
             }
         });

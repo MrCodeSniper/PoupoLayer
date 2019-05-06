@@ -28,6 +28,16 @@ public   class  PopLayerView <T> implements IWindowEvent { //提供给外界的�
     private LayerLifecycle starategy;
 
 
+    public interface onPopDismissListener{
+        void onDismiss();
+    }
+
+    private onPopDismissListener onPopDismissListener;
+
+    public void setOnPopDismissListener(PopLayerView.onPopDismissListener onPopDismissListener) {
+        this.onPopDismissListener = onPopDismissListener;
+    }
+
     /**------------------根据构造方法决定对应策略--------------------**/
 
     private int mLayout;
@@ -74,16 +84,22 @@ public   class  PopLayerView <T> implements IWindowEvent { //提供给外界的�
         switch (mType){
             case CUSTOM:
                 if(iWindow.getPoupo() instanceof Dialog){
-                    this.starategy=new DialogLayerStrategyImpl(mContext,iWindow);
+                    DialogLayerStrategyImpl impl=new DialogLayerStrategyImpl(mContext,iWindow);
+                    impl.setWindowEvent(this);
+                    this.starategy=impl;
                 }else if(iWindow.getPoupo() instanceof WebView){
                     //TODO
                 }
                 break;
             case CUSTOM_LAYOUT_DIALOG:
-                this.starategy=new DialogLayerStrategyImpl(mContext,mLayout);
+                DialogLayerStrategyImpl impl=new DialogLayerStrategyImpl(mContext,mLayout);
+                impl.setWindowEvent(this);
+                this.starategy=impl;
                 break;
             case CUSTOM_LAYOUT_THEME_DIALOG:
-                this.starategy=new DialogLayerStrategyImpl(mContext,mLayout,mTheme);
+                DialogLayerStrategyImpl impl1=new DialogLayerStrategyImpl(mContext,mLayout,mTheme);
+                impl1.setWindowEvent(this);
+                this.starategy=impl1;
                 break;
             case CUSTOM_WEBVIEW:
                 this.starategy=new WebViewLayerStrategyImpl(mContext,loadUrl);
@@ -162,6 +178,8 @@ public   class  PopLayerView <T> implements IWindowEvent { //提供给外界的�
     }
 
 
+    ///////////////////////////////////////////////////////////
+
     @Override
     public void onWindowShow() {
 
@@ -169,7 +187,9 @@ public   class  PopLayerView <T> implements IWindowEvent { //提供给外界的�
 
     @Override
     public void onWindowDismiss() {
-
+        if(onPopDismissListener!=null){
+            onPopDismissListener.onDismiss();
+        }
     }
 
     public LayerLifecycle getConcreateStrategy(){

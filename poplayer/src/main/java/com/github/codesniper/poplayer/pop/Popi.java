@@ -5,8 +5,12 @@ package com.github.codesniper.poplayer.pop;
 //Code Programming By MrCodeSniper on 2018/10/27.Best Wishes to You!  []~(~▽~)~* Cheers!
 
 
+import android.content.Context;
+
 import com.github.codesniper.poplayer.PopLayerView;
 import com.github.codesniper.poplayer.strategy.LayerLifecycle;
+import com.github.codesniper.poplayer.task.TaskManager;
+import com.github.codesniper.poplayer.task.TaskManagerV1;
 
 import static com.github.codesniper.poplayer.config.LayerConfig.COUNTDOWN_CANCEL;
 import static com.github.codesniper.poplayer.config.LayerConfig.TRIGGER_CANCEL;
@@ -49,10 +53,13 @@ public class Popi implements Comparable<Popi> {
     //对应弹窗的点击后路径 默认适用于单业务弹窗
     private String routePath;
 
+    private Context mContext;
+
     public Popi(Builder builder) {
+        this.mContext=builder.mContext;
         this.priority = builder.mPriority;
         this.popId = builder.mPopId;
-        this.content = builder.mPopLayerView;
+        this.content = builder.mPopLayerView.getConcreateStrategy();
         this.mType = builder.mPopType;
         this.cancelType = builder.mCancelType;
         this.routePath = builder.mRoutePath;
@@ -129,14 +136,14 @@ public class Popi implements Comparable<Popi> {
         PopManager.getInstance(content.getLayerContext()).showNextPopi();
     }
 
+
     public static Builder getBuilder(){
         return new Builder();
     }
 
-
     public static class Builder {
 
-        private LayerLifecycle mPopLayerView;
+        private PopLayerView mPopLayerView;
         private PopType mPopType;
         private int maxShowCount=Integer.MAX_VALUE - 1;
         private long mPopId;
@@ -146,6 +153,12 @@ public class Popi implements Comparable<Popi> {
         private String mRoutePath;
         private int mCancelType=TRIGGER_CANCEL;
         private int maxShowTimeLength=60;
+        private Context mContext;
+
+        public Builder() {
+
+        }
+
 
         public Builder setMaxShowTimeLength(int maxShowTimeLength) {
             this.maxShowTimeLength = maxShowTimeLength;
@@ -153,7 +166,15 @@ public class Popi implements Comparable<Popi> {
         }
 
         public Builder setLayerView(PopLayerView mPopLayerView) {
-            this.mPopLayerView = mPopLayerView.getConcreateStrategy();
+            this.mPopLayerView = mPopLayerView;
+            this.mContext=mPopLayerView.getContext();
+            mPopLayerView.setOnPopDismissListener(new PopLayerView.onPopDismissListener() {
+                @Override
+                public void onDismiss() {
+                    PopManager.getInstance(mContext).onPopDimiss();
+                    TaskManagerV1.getInstance(mContext).onPopDimiss();
+                }
+            });
             return this;
         }
 
