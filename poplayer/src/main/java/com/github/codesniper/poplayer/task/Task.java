@@ -15,6 +15,13 @@ public class Task implements Comparable<Task> {
 
     private int mTaskId;
 
+    public Task() {
+    }
+
+    public Task(int mPriority, int mTaskId) {
+        this.mPriority = mPriority;
+        this.mTaskId = mTaskId;
+    }
 
     public int getmTaskId() {
         return mTaskId;

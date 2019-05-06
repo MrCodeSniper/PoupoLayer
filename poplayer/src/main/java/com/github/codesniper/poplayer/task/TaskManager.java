@@ -24,6 +24,8 @@ public class TaskManager implements PopDismissListener {
 
     private HashMap<Task,Popi> relationMap;
 
+    private HashMap<Integer,Task> taskHashMap;
+
     public static TaskManager getInstance(Context context) {
         if (mInstance == null) {
             synchronized (TaskManager.class) {
@@ -43,6 +45,10 @@ public class TaskManager implements PopDismissListener {
         if(relationMap==null){
             relationMap=new HashMap<>();
         }
+
+        if(taskHashMap==null){
+            taskHashMap=new HashMap<>();
+        }
     }
 
 
@@ -57,6 +63,7 @@ public class TaskManager implements PopDismissListener {
      */
     public TaskManager pushToQueue(Task task, Popi popi) {
         relationMap.put(task,popi);
+        taskHashMap.put(task.getmTaskId(),task);
         //如果队列中存在此弹窗 不重复加入
         if (!isAlreadyInQueue(task, queue)) {
             queue.add(task);
@@ -95,6 +102,12 @@ public class TaskManager implements PopDismissListener {
             Log.d("hrz","当前task不是优先级最高的");
             if(popi!=null)   pushToReserve(popi);
         }
+    }
+
+    public void onTaskGoOn(int taskId){
+        //目前的task优先级判断是否在队列中是最高的
+        //是最高的 显示对应的弹窗
+        onTaskGoOn(taskHashMap.get(taskId));
     }
 
     private boolean isTaskFirstPriority(Task task){

@@ -6,11 +6,13 @@ package com.github.codesniper.poplayer.pop;
 
 
 import android.content.Context;
+import android.util.Log;
 
 import com.github.codesniper.poplayer.PopLayerView;
 import com.github.codesniper.poplayer.strategy.LayerLifecycle;
 import com.github.codesniper.poplayer.task.TaskManager;
 import com.github.codesniper.poplayer.task.TaskManagerV1;
+import com.github.codesniper.poplayer.util.PopUtils;
 
 import static com.github.codesniper.poplayer.config.LayerConfig.COUNTDOWN_CANCEL;
 import static com.github.codesniper.poplayer.config.LayerConfig.TRIGGER_CANCEL;
@@ -24,7 +26,8 @@ import static com.github.codesniper.poplayer.config.LayerConfig.TRIGGER_CANCEL;
 public class Popi implements Comparable<Popi> {
 
 
-
+    //弹窗描述
+    private String mPopDesc;
     //弹窗类型
     private PopType mType;
 
@@ -56,6 +59,7 @@ public class Popi implements Comparable<Popi> {
     private Context mContext;
 
     public Popi(Builder builder) {
+        this.mPopDesc=builder.popDesc;
         this.mContext=builder.mContext;
         this.priority = builder.mPriority;
         this.popId = builder.mPopId;
@@ -127,13 +131,19 @@ public class Popi implements Comparable<Popi> {
         return priority;
     }
 
-    public Popi pushToQueue() {
-        PopManager.getInstance(content.getLayerContext()).pushToQueue(this);
-        return this;
+    public void pushToQueue() {
+        PopManager.getInstance(mContext).pushToQueue(this);
     }
 
     public void show(){
-        PopManager.getInstance(content.getLayerContext()).showNextPopi();
+        PopManager.getInstance(mContext).pushToQueue(this);
+        //如果自己并不处于队列的第一个就不显示
+        if(PopManager.getInstance(mContext).isPopiFirstTheQueue(this)){
+            PopUtils.Log("isFirst"+mPopDesc);
+            PopManager.getInstance(content.getLayerContext()).showNextPopi();
+        }else {
+            PopUtils.Log("isNotFirst"+mPopDesc);
+        }
     }
 
 
@@ -154,9 +164,15 @@ public class Popi implements Comparable<Popi> {
         private int mCancelType=TRIGGER_CANCEL;
         private int maxShowTimeLength=60;
         private Context mContext;
+        private String  popDesc;
 
         public Builder() {
 
+        }
+
+        public Builder setDesc(String  str) {
+            this.popDesc = str;
+            return this;
         }
 
 

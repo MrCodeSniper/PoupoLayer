@@ -30,6 +30,7 @@ public class PopManager implements PopDismissListener {
 
     private PopCallback popCallback;
 
+
     public void setPopCallback(PopCallback popCallback) {
         this.popCallback = popCallback;
     }
@@ -94,6 +95,15 @@ public class PopManager implements PopDismissListener {
             if (item.getPopId() == popi.getPopId()) {
                 return true;
             }
+        }
+        return false;
+    }
+
+
+    public boolean isPopiFirstTheQueue(Popi popi){
+        Popi first=queue.element();
+        if(first==popi){
+            return true;
         }
         return false;
     }

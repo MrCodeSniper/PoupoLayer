@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 
@@ -113,5 +114,10 @@ public class PopUtils {
         }
 
 
+    }
+
+
+    public static void Log(String msg){
+        Log.d("PopLayer",msg);
     }
 }

@@ -1,5 +1,8 @@
 package com.github.codesniper.poplayer.custom;
 
+/**
+ * 弹窗管理的回调
+ */
 public interface PopCallback {
 
     //弹窗已经存在于队列中

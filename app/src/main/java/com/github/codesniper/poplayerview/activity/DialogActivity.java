@@ -88,7 +88,6 @@ public class DialogActivity extends AppCompatActivity {
                     .setMaxShowTimeLength(5)
                     .setLayerView(mLayerView)
                     .build()
-                    .pushToQueue()
                     .show();
 }
 
@@ -104,7 +103,6 @@ public class DialogActivity extends AppCompatActivity {
                 .setmEndDate(1568858028)//结束时间 2019-09-19 09:53:48 1568858028
                 .setLayerView(mLayerView)
                 .build()
-                .pushToQueue()
                 .show();
     }
 
@@ -119,7 +117,6 @@ public class DialogActivity extends AppCompatActivity {
                 .setmEndDate(1525360159)//结束时间 2019-09-19 09:53:48 1568858028
                 .setLayerView(mLayerView)
                 .build()
-                .pushToQueue()
                 .show();
     }
 
@@ -132,7 +129,6 @@ public class DialogActivity extends AppCompatActivity {
                 .setMaxShowCount(5)
                 .setLayerView(mLayerView)
                 .build()
-                .pushToQueue()
                 .show();
     }
 
