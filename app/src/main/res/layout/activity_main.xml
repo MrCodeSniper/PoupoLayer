@@ -17,6 +17,10 @@
         android:onClick="toWebSubject"
         android:layout_height="wrap_content" />
 
-
+    <Button
+        android:layout_width="wrap_content"
+        android:text="异步专题"
+        android:onClick="toSyncSubject"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
