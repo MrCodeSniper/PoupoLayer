@@ -133,11 +133,11 @@ V3.0.0~V3.0.2|优化回调优化职责分离|全网最新最全DEMO
 
 如果您对本项目感兴趣您可以去掘金观看我的文章 给予一点小小的支持
 
-[Android通用业务弹窗管理方案PoupoLayerV1-Dialog方案](https://juejin.im/post/5c51da126fb9a04a006f6da0)
+[Android通用业务弹窗管理方案V1-Dialog方案](https://juejin.im/post/5c51da126fb9a04a006f6da0)
 
-[Android通用业务弹窗管理方案PoupoLayerV2-WebView方案](https://juejin.im/post/5c56acb851882562eb50d564)
+[Android通用业务弹窗管理方案V2-WebView方案](https://juejin.im/post/5c56acb851882562eb50d564)
 
-[Android通用业务弹窗管理方案PoupoLayerV3- 业务流程控制](https://juejin.im/post/5c961f585188252da05f4b08)
+[Android通用业务弹窗管理方案V3- 业务流程控制](https://juejin.im/post/5c961f585188252da05f4b08)
 
 ## 作者介绍
 
